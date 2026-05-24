@@ -13,6 +13,17 @@ Keep this file small. It is a baton, not a second issue tracker.
 
 - [ ] Capture the next concrete Codex task.
 
+## Active Threads
+
+```text
+Thread:
+Branch:
+Owner/files:
+Status:
+Proof:
+Next decision:
+```
+
 ## Next
 
 - [ ] Add the next smallest shippable step.

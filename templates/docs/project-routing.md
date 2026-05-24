@@ -42,6 +42,19 @@ gh auth status
 Use read-only checks freely. Before write actions, confirm ambiguity around
 account, fork, organization, branch, or release target.
 
+## Work Surfaces
+
+- Local app thread: best for changes that need the real checkout, local tools,
+  browser inspection, screenshots, or active user steering.
+- Cloud or background task: best for independent backlog work with clear setup,
+  a clean branch, and no private local state.
+- Automation: best for stable recurring checks, summaries, triage, or reports.
+- Mobile or quick-capture task: best for parking a small idea that will be
+  reviewed later on the main machine.
+
+When moving work between surfaces, record the branch, task URL or thread name,
+proof already gathered, and the next decision needed.
+
 ## Related Projects
 
 - Stay in the current checkout unless the user asks for another repo or this

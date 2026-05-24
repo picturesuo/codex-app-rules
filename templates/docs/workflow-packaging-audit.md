@@ -60,6 +60,16 @@ output is easy to review.
 4. Add an automation only when cadence and review output are stable.
 5. Skip when evidence is thin.
 
+## Pattern Fit
+
+- Context note: stable fact, preference, caveat, or retrospective.
+- Tool entry: exact command, auth source, permission, limit, or fallback.
+- Skill: repeated method with inputs, outputs, stopping condition, and proof.
+- Subagent/thread: noisy investigation, independent review, broad search, or
+  long-running proof that should not flood the main context.
+- Automation: stable schedule plus a result worth reviewing later.
+- Guardrail script/check: deterministic rule that should run every time.
+
 ## Shortlist
 
 ```text

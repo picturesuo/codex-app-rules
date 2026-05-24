@@ -48,6 +48,22 @@ target repo after install.
 - Keep the shared package small. If a detail is true for one repo, install the
   templates there and write it there.
 
+## Workflow Shape
+
+The templates encode a few patterns that kept recurring across strong public
+agent workflows:
+
+- brief like a GitHub issue: goal, context, constraints, and done condition;
+- explore and plan before large edits, but skip ceremony for obvious changes;
+- keep context lean by sending noisy search, logs, and review into separate
+  threads or subagents;
+- prefer measurable loops: run proof, inspect output, keep the change only when
+  it improves the target without needless complexity;
+- use tools deliberately: repo scripts first, CLIs before broad integrations,
+  MCP/browser/computer-use only when they close a real feedback loop;
+- write retrospectives back into docs, skills, scripts, or automations only
+  after repeated friction.
+
 ## Operating Loop
 
 1. Open Codex on the target checkout.

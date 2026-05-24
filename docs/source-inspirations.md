@@ -21,8 +21,8 @@ Adapted patterns:
 - Markdown is the agent program.
 - The harness should be small enough to understand.
 - Name editable and read-only surfaces.
-- Define the proof before editing.
-- Keep measured wins; discard failures.
+- Define the proof and measurement before editing.
+- Keep measured wins; discard failures; log the reason.
 - Prefer simpler code when outcomes tie.
 - Use skill-sized instructions for repeated workflows instead of loading every
   detail into the standing prompt.
@@ -33,10 +33,10 @@ Adapted patterns:
 
 Sources:
 
+- https://steipete.me/posts/just-talk-to-it
 - https://github.com/steipete/agent-scripts/blob/main/AGENTS.MD
 - https://github.com/steipete/agent-scripts/blob/main/tools.md
 - https://github.com/steipete/agent-scripts/blob/main/README.md
-- https://steipete.me/posts/just-talk-to-it
 - https://zenn.dev/seyz/articles/20260308-steipete-codex-how-to
 
 Adapted patterns:
@@ -50,6 +50,10 @@ Adapted patterns:
   secret values.
 - Treat dirty worktrees as state, not noise.
 - Make publish policy explicit.
+- Think about blast radius before fanning out work.
+- Use screenshots and runtime feedback when visual or UI context matters.
+- Prefer simple local CLIs over context-heavy integrations unless the
+  integration clearly removes a repeated manual loop.
 
 ## X And Agent Markdown
 
@@ -78,6 +82,11 @@ Sources:
 - https://developers.openai.com/codex/learn/best-practices
 - https://developers.openai.com/codex/memories
 - https://developers.openai.com/codex/memories/chronicle
+- https://developers.openai.com/codex/guides/agents-md
+- https://openai.com/business/guides-and-resources/how-openai-uses-codex/
+- https://openai.com/index/introducing-the-codex-app/
+- https://openai.com/index/unrolling-the-codex-agent-loop/
+- https://openai.com/index/unlocking-the-codex-harness/
 
 Adapted patterns:
 
@@ -87,6 +96,58 @@ Adapted patterns:
 - Automations are for repeatable scheduled work.
 - Memories and Chronicle are discovery aids; confirm important facts in source
   systems.
+- Strong prompts name goal, context, constraints, and done condition.
+- Codex app work should be organized as durable threads with reviewable output.
+- App skills package workflows that are hard to define consistently.
+- Automations combine stable instructions with cadence and a review queue.
+- Keep one thread per coherent task to prevent bloated context.
+- Treat setup, startup scripts, env vars, and tool availability as part of the
+  product surface for Codex.
+
+## Anthropic And Claude Code
+
+Sources:
+
+- https://code.claude.com/docs/en/best-practices
+- https://code.claude.com/docs/en/features-overview
+- https://code.claude.com/docs/en/sub-agents
+- https://code.claude.com/docs/en/hooks
+- https://support.claude.com/en/articles/14554000-claude-code-power-user-tips
+- https://www.anthropic.com/news/how-anthropic-teams-use-claude-code
+- https://www.anthropic.com/engineering/building-effective-agents
+- https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- https://www.infoq.com/news/2026/01/claude-code-creator-workflow/
+
+Adapted patterns:
+
+- Verify with tests, screenshots, or expected output.
+- Explore first, then plan, then implement for ambiguous work.
+- Keep always-on instruction files short; move occasional workflows into skills.
+- Use isolated workers for noisy research, long logs, and independent review.
+- Use deterministic scripts or checks for rules that must fire every time.
+- Manage context aggressively; summarize or split when the thread stops helping.
+- Treat parallel agents as a coordination problem with clear ownership, status,
+  and proof.
+- Let the agent interview the user for large, unclear features before coding.
+
+## YC Agent Startups
+
+Sources:
+
+- https://www.ycombinator.com/companies/conductor
+- https://www.ycombinator.com/companies/compyle
+- https://www.ycombinator.com/companies/syntropy
+- https://www.ycombinator.com/companies/stagewise
+- https://www.ycombinator.com/companies/superagent
+
+Adapted patterns:
+
+- Parallel agents need isolated workspaces, visible status, and human review.
+- Open-ended tasks need specification, questions, checkpoints, and ownership
+  more than raw autonomy.
+- Browser/runtime context matters for frontend agents.
+- Long-horizon work should decompose into dependencies and produce a tested PR.
+- Agent security needs sandboxing, permission boundaries, and audit trails.
 
 ## Simon Willison
 

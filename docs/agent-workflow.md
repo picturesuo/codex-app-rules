@@ -7,6 +7,32 @@ read_when:
 
 # Agent Workflow
 
+## Task Brief
+
+For nontrivial work, turn the request into a compact brief before editing:
+
+```text
+Goal:
+Context:
+Constraints:
+Done when:
+```
+
+Use the brief to keep Codex out of guesswork. If the goal, data exposure,
+architecture, or publish path is ambiguous, clarify or present options before
+coding.
+
+## Mode Choice
+
+- Discuss: use when the request is fuzzy, product-shaped, risky, or strategic.
+- Plan: use when the change spans files, touches architecture, or has several
+  valid approaches.
+- Code: use when success criteria and proof are clear.
+- Review: use a fresh pass for important diffs, security-sensitive changes, and
+  contributor PRs.
+- Automate: use only after the workflow has worked manually and has reviewable
+  output.
+
 ## Loop
 
 1. Read `AGENTS.md`, then this file.
@@ -47,12 +73,23 @@ files.
 
 ## Parallel Work
 
-- Split only when tasks have clear file ownership.
-- Use one Codex thread per file, feature slice, or proof.
+- Split only when tasks have clear file ownership or read-only scope.
+- Use one Codex thread per task, feature slice, or proof.
 - Do not let two sessions edit the same file unless one session sequences the
   work.
 - Finished sessions report changed files, verification, residual risk, and ship
   status.
+- Use separate threads or subagents for noisy exploration, logs, broad search,
+  long tests, and independent review so the main thread stays focused.
+
+## Review Loop
+
+- Inspect the diff before calling work done.
+- Run the narrowest proof that can fail for the change.
+- For UI work, capture or inspect the actual screen when possible.
+- For bugs, prefer a reproducer or regression test before the fix.
+- For high-risk changes, use a fresh review context so the reviewer is not
+  anchored to the implementation path.
 
 ## Publish Path
 

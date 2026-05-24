@@ -21,3 +21,18 @@ read_when:
 - Label notes by source when useful: `user`, `repo`, or `external`.
 - Prefer dated notes for facts that may expire.
 - Remove or revise stale notes when source truth changes.
+
+## Retrospectives
+
+When Codex makes the same mistake twice, add a short note:
+
+```text
+Date:
+Source:
+Observed mistake:
+Preferred behavior:
+Verification:
+```
+
+If the note is really a command, move it to `docs/tools.md`. If it is really a
+publish or repo-routing rule, move it to `docs/project-routing.md`.

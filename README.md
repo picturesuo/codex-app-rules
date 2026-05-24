@@ -60,6 +60,18 @@ The design bias is deliberately plain: one file per job, exact local commands
 over lore, compact summaries over sprawling context, and no secrets anywhere an
 agent may quote, commit, or publish.
 
+## Workflow Biases
+
+- Brief tasks like GitHub issues: goal, context, constraints, done condition.
+- Keep always-on instructions short; move occasional workflows into skills.
+- Use separate threads or subagents for noisy exploration, logs, long tests, and
+  independent review.
+- Prefer repo scripts and CLIs before heavier integrations; add MCP or browser
+  tools when they close a real feedback loop.
+- Use automations only after the manual workflow is stable and the result is
+  easy to review.
+- Feed repeated mistakes back into the smallest durable file that prevents them.
+
 ## Sources
 
 - OpenAI Codex best practices: https://developers.openai.com/codex/learn/best-practices
@@ -71,4 +83,9 @@ agent may quote, commit, or publish.
 - Steinberger agent scripts: https://github.com/steipete/agent-scripts
 - Steinberger tools catalog: https://github.com/steipete/agent-scripts/blob/main/tools.md
 - X agent-resource docs: https://docs.x.com/tools/llms-txt
+- Anthropic Claude Code best practices: https://code.claude.com/docs/en/best-practices
+- Anthropic effective agents: https://www.anthropic.com/engineering/building-effective-agents
+- Anthropic context engineering: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+- AGENTS.md format: https://agents.md
+- YC Conductor: https://www.ycombinator.com/companies/conductor
 - Simon Willison on parallel coding agents: https://simonwillison.net/2025/Oct/5/parallel-coding-agents/
