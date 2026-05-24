@@ -33,6 +33,18 @@ read_when:
 - Stable behavior belongs in `AGENTS.md`.
 - Around 80% context used, compact or hand off after recording status.
 
+## Start Packet
+
+Before editing, know:
+
+- request and success criteria;
+- branch, dirty state, and publish mode;
+- relevant project routing and tool constraints;
+- narrowest useful proof.
+
+If one of these changes while working, adjust the plan before touching more
+files.
+
 ## Parallel Work
 
 - Split only when tasks have clear file ownership.
@@ -62,3 +74,12 @@ read_when:
 - Add regression coverage when a bug was observed and the check is cheap.
 - Do not edit adjacent code, docs, formatting, or config unless the request
   requires it.
+
+## Finish Packet
+
+Report:
+
+- changed files;
+- verification run and result;
+- residual risk or unverified area;
+- commit, push, PR, or local-only state.

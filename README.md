@@ -1,20 +1,26 @@
 # Codex App Rules
 
-Common Codex app rules for any repo.
+A small Markdown operating kit for Codex-ready repos.
 
-This repo gives projects a small, durable agent surface:
+The package gives every checkout the same durable surface:
 
-- `AGENTS.md`: hard rules, coding posture, and publish policy.
-- `docs/agent-workflow.md`: the working loop.
-- `docs/project-routing.md`: repo identity, GitHub, publish, and related-project
-  routing.
-- `docs/tools.md`: local tool catalog, auth source names, permissions, and
-  known limits.
-- `docs/workflow-packaging-audit.md`: when to create a skill, subagent,
-  automation, extension, or skip.
-- `docs/queue.md`: the next small task.
-- `docs/knowledge.md`: durable project facts and user preferences.
-- `.codex/config.toml`: repo-scoped Codex defaults.
+- a behavior contract Codex reads before acting;
+- a working loop that turns vague requests into verifiable outcomes;
+- safe places to store routing, tools, task state, and durable knowledge;
+- a publish path that commits and pushes only verified repo-visible work.
+
+## File Map
+
+| File | Job |
+| --- | --- |
+| `AGENTS.md` | Hard rules, coding posture, and publish policy. |
+| `docs/agent-workflow.md` | The enter, edit, verify, and ship loop. |
+| `docs/project-routing.md` | Repo identity, GitHub, publish, and related-project routing. |
+| `docs/tools.md` | Local tool catalog, auth source names, permissions, and known limits. |
+| `docs/workflow-packaging-audit.md` | When repeated work deserves a skill, subagent, automation, doc, or script. |
+| `docs/queue.md` | The next task and clean handoff state. |
+| `docs/knowledge.md` | Durable project facts and user preferences. |
+| `.codex/config.toml` | Repo-scoped Codex defaults. |
 
 ## Install
 
@@ -50,6 +56,10 @@ Project-specific GitHub accounts, remotes, release rules, tool paths, and
 related repos belong in the installed target repo docs. The shared templates
 provide safe places to record them without storing secrets.
 
+The design bias is deliberately plain: one file per job, exact local commands
+over lore, compact summaries over sprawling context, and no secrets anywhere an
+agent may quote, commit, or publish.
+
 ## Sources
 
 - OpenAI Codex best practices: https://developers.openai.com/codex/learn/best-practices
@@ -60,4 +70,5 @@ provide safe places to record them without storing secrets.
 - Karpathy-inspired `CLAUDE.md`: https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md
 - Steinberger agent scripts: https://github.com/steipete/agent-scripts
 - Steinberger tools catalog: https://github.com/steipete/agent-scripts/blob/main/tools.md
+- X agent-resource docs: https://docs.x.com/tools/llms-txt
 - Simon Willison on parallel coding agents: https://simonwillison.net/2025/Oct/5/parallel-coding-agents/

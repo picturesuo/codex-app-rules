@@ -22,20 +22,31 @@ The common files should do only durable work:
 - define when repeated work deserves packaging;
 - set repo-scoped Codex defaults.
 
-## Template Set
+## File Roles
 
-- `AGENTS.md`
-- `docs/agent-workflow.md`
-- `docs/project-routing.md`
-- `docs/tools.md`
-- `docs/workflow-packaging-audit.md`
-- `docs/queue.md`
-- `docs/knowledge.md`
-- `.codex/config.toml`
+| File | Role | Update When |
+| --- | --- | --- |
+| `AGENTS.md` | Behavior contract and hard rules. | A rule should apply across many sessions. |
+| `docs/agent-workflow.md` | Read, edit, verify, and publish loop. | The working loop changes. |
+| `docs/project-routing.md` | Repo, GitHub, release, and related-project routing. | Codex has to ask the same routing question twice. |
+| `docs/tools.md` | Tool commands, auth source names, limits, and fallbacks. | A local tool has a stable command or gotcha. |
+| `docs/workflow-packaging-audit.md` | Decision test for skills, subagents, automations, docs, and scripts. | Repeated work needs packaging discipline. |
+| `docs/queue.md` | Current task baton and small backlog. | Work is paused, resumed, blocked, or handed off. |
+| `docs/knowledge.md` | Durable facts and user preferences. | A fact will help future sessions. |
+| `.codex/config.toml` | Repo-scoped Codex defaults. | The repo needs a stable Codex default. |
 
 These files are common across projects. Project-specific commands, ports,
 architecture notes, tool paths, GitHub accounts, and release rules belong in the
 target repo after install.
+
+## Read And Write Paths
+
+- Read path: `AGENTS.md` -> workflow -> routing/tools -> queue/knowledge ->
+  source code.
+- Write path: code and tests first, then update queue, knowledge, routing, or
+  tools only when the work produced durable context.
+- Keep the shared package small. If a detail is true for one repo, install the
+  templates there and write it there.
 
 ## Operating Loop
 

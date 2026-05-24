@@ -17,6 +17,8 @@ This repo packages reusable Codex app rules for other repos.
 - Keep templates safe to publish.
 - No secrets in docs, templates, config, commits, or PR bodies.
 - Keep common project rules in `templates/`; keep explanation in `docs/`.
+- Keep each Markdown file focused on one job; prefer links and short maps over
+  duplicated instruction blocks.
 - Do not overwrite a target repo's existing instructions.
 - When editing a target repo, read that repo's `AGENTS.md` first.
 

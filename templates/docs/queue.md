@@ -1,4 +1,13 @@
+---
+summary: Current task baton and small backlog.
+read_when:
+  - You are starting, resuming, pausing, or handing off work.
+  - The active thread is losing context.
+---
+
 # Queue
+
+Keep this file small. It is a baton, not a second issue tracker.
 
 ## Now
 

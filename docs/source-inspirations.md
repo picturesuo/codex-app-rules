@@ -51,6 +51,26 @@ Adapted patterns:
 - Treat dirty worktrees as state, not noise.
 - Make publish policy explicit.
 
+## X And Agent Markdown
+
+Sources:
+
+- https://docs.x.com/tools/llms-txt
+- https://x.com/itsolelehmann/status/2026559843109306774
+- https://x.com/Aizcalibur/status/2039808212107505700
+- https://x.com/alex_prompter/status/2039853870810108384
+- https://x.com/karpathy/status/1872038630405054853
+
+Adapted patterns:
+
+- Treat Markdown files as an agent-readable interface, not just prose.
+- Give agents an index and small summaries so they know what to open.
+- Keep behavior, tools, routing, queue, and knowledge in separate files with
+  clear ownership.
+- Capture tool gotchas where they are read, not in scattered conversation
+  history.
+- Reduce cognitive load by making the next action and the right file obvious.
+
 ## OpenAI Codex
 
 Sources:

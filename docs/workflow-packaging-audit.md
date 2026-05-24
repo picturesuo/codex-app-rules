@@ -51,6 +51,15 @@ mistake is "which command/tool/account?" rather than "how do I run this
 workflow?" Prefer automation only after the prompt shape has worked and the
 output is easy to review.
 
+## Decision Order
+
+1. Add a note to `docs/knowledge.md`, `docs/project-routing.md`, or
+   `docs/tools.md` when the fix is just context.
+2. Add or improve a repo script when the work is command-shaped.
+3. Add or improve a skill when the work is a repeatable method across repos.
+4. Add an automation only when cadence and review output are stable.
+5. Skip when evidence is thin.
+
 ## Shortlist
 
 ```text

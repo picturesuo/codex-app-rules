@@ -21,6 +21,8 @@ This repo is worked by Codex app sessions.
 - Keep durable facts in docs/knowledge.md.
 - Keep repo identity, publish routing, and tool catalogs in docs/project-routing.md
   or docs/tools.md.
+- Keep each Markdown file focused on one job; prefer links and short maps over
+  duplicated instruction blocks.
 - Do not store secrets in docs, config, commits, issues, PRs, or logs.
 
 ## Think Before Coding

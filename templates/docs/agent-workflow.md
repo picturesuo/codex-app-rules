@@ -1,3 +1,10 @@
+---
+summary: The common Codex app working loop.
+read_when:
+  - You are deciding whether to edit, verify, commit, or push.
+  - You are resuming or handing off work.
+---
+
 # Agent Workflow
 
 ## Loop
@@ -26,6 +33,18 @@
 - Stable behavior belongs in AGENTS.md.
 - Around 80% context used, compact or hand off after recording status.
 
+## Start Packet
+
+Before editing, know:
+
+- request and success criteria;
+- branch, dirty state, and publish mode;
+- relevant project routing and tool constraints;
+- narrowest useful proof.
+
+If one of these changes while working, adjust the plan before touching more
+files.
+
 ## Parallel Work
 
 - Split only when tasks have clear file ownership.
@@ -41,3 +60,12 @@
   or releasing.
 - Include changed files, verification, residual risk, and ship status in the
   handoff.
+
+## Finish Packet
+
+Report:
+
+- changed files;
+- verification run and result;
+- residual risk or unverified area;
+- commit, push, PR, or local-only state.

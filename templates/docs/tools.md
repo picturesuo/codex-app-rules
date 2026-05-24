@@ -1,3 +1,11 @@
+---
+summary: Repo-local and user-local tools Codex may need.
+read_when:
+  - You need a command that is not obvious from package scripts.
+  - You are using a tool with auth, permissions, rate limits, or sharp edges.
+  - A previous session wasted time choosing the wrong tool.
+---
+
 # Tools
 
 Catalog repo-local and user-local tools that Codex may need. Keep entries short,
@@ -13,6 +21,13 @@ verifiable, and safe to publish.
   name, or environment variable name. Never include secret values.
 - Include known limits, required permissions, and fallback commands when they
   prevent repeated mistakes.
+
+## Add Entries When
+
+- a command is reused across tasks;
+- the correct tool is not the obvious default;
+- auth, rate limits, profiles, or environment setup matter;
+- there is a safer fallback than guessing.
 
 ## GitHub
 

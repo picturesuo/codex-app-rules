@@ -1,3 +1,11 @@
+---
+summary: Repo identity, GitHub, publish, and related-project routing.
+read_when:
+  - You are about to read or write GitHub state.
+  - You are about to publish, release, deploy, or switch repos.
+  - The task mentions another checkout, fork, account, or organization.
+---
+
 # Project Routing
 
 Use this file for repo-specific routing that should survive across Codex
@@ -21,6 +29,18 @@ other secrets here.
   publishing or commenting.
 - Record release, deploy, changelog, or CI rules here only when they are stable
   for this repo.
+
+## Quick Checks
+
+```bash
+git status --short --branch
+git remote -v
+gh repo view --json nameWithOwner --jq .nameWithOwner
+gh auth status
+```
+
+Use read-only checks freely. Before write actions, confirm ambiguity around
+account, fork, organization, branch, or release target.
 
 ## Related Projects
 
