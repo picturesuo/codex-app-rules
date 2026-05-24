@@ -8,6 +8,8 @@ This repo is worked by Codex app sessions.
 
 - README.md when present.
 - docs/agent-workflow.md
+- docs/project-routing.md
+- docs/tools.md
 - docs/workflow-packaging-audit.md
 - docs/queue.md
 - docs/knowledge.md
@@ -17,6 +19,8 @@ This repo is worked by Codex app sessions.
 - Follow the user's latest request.
 - Keep current task state in the active thread, shared context, or docs/queue.md.
 - Keep durable facts in docs/knowledge.md.
+- Keep repo identity, publish routing, and tool catalogs in docs/project-routing.md
+  or docs/tools.md.
 - Do not store secrets in docs, config, commits, issues, PRs, or logs.
 
 ## Think Before Coding

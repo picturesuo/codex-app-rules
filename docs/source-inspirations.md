@@ -14,6 +14,7 @@ Sources:
 - https://github.com/karpathy/autoresearch
 - https://github.com/karpathy/autoresearch/blob/master/program.md
 - https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md
+- https://github.com/forrestchang/andrej-karpathy-skills/tree/main/skills/karpathy-guidelines
 
 Adapted patterns:
 
@@ -23,6 +24,8 @@ Adapted patterns:
 - Define the proof before editing.
 - Keep measured wins; discard failures.
 - Prefer simpler code when outcomes tie.
+- Use skill-sized instructions for repeated workflows instead of loading every
+  detail into the standing prompt.
 - Use four coding rules: think before coding, simplicity first, surgical
   changes, and goal-driven execution.
 
@@ -31,6 +34,8 @@ Adapted patterns:
 Sources:
 
 - https://github.com/steipete/agent-scripts/blob/main/AGENTS.MD
+- https://github.com/steipete/agent-scripts/blob/main/tools.md
+- https://github.com/steipete/agent-scripts/blob/main/README.md
 - https://steipete.me/posts/just-talk-to-it
 - https://zenn.dev/seyz/articles/20260308-steipete-codex-how-to
 
@@ -39,6 +44,10 @@ Adapted patterns:
 - Keep agent rules terse.
 - Put secrets, git, release, and CI behavior where agents will see it.
 - Prefer exact local commands.
+- Keep local tool catalogs separate from hard rules.
+- Prefer `gh` for GitHub issue, PR, CI, release, and repo-identity work.
+- Record auth source names, permissions, and known limits without exposing
+  secret values.
 - Treat dirty worktrees as state, not noise.
 - Make publish policy explicit.
 

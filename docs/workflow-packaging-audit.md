@@ -39,12 +39,17 @@ handled by a normal prompt.
 - Skill: reusable method or tool workflow.
 - Subagent: bounded specialist investigation or review.
 - Automation: scheduled check, report, reminder, or monitor.
+- Tool catalog entry: exact local command, auth source name, permission, limit,
+  or fallback.
+- Routing note: stable repo identity, GitHub, release, or related-project rule.
 - Extend existing: improve a current skill, doc, script, automation, or rule.
 - Skip: not worth packaging yet.
 
 Prefer extension over duplication. Prefer a repo doc or script over a skill when
-the workflow belongs only to one repo. Prefer automation only after the prompt
-shape has worked and the output is easy to review.
+the workflow belongs only to one repo. Prefer `docs/tools.md` when the repeated
+mistake is "which command/tool/account?" rather than "how do I run this
+workflow?" Prefer automation only after the prompt shape has worked and the
+output is easy to review.
 
 ## Shortlist
 

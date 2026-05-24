@@ -16,6 +16,8 @@ The common files should do only durable work:
 - tell Codex how to behave;
 - name the working loop;
 - preserve stable project knowledge;
+- make GitHub, publish, related-project, and local-tool routing explicit without
+  storing secrets;
 - keep the next task visible;
 - define when repeated work deserves packaging;
 - set repo-scoped Codex defaults.
@@ -24,24 +26,30 @@ The common files should do only durable work:
 
 - `AGENTS.md`
 - `docs/agent-workflow.md`
+- `docs/project-routing.md`
+- `docs/tools.md`
 - `docs/workflow-packaging-audit.md`
 - `docs/queue.md`
 - `docs/knowledge.md`
 - `.codex/config.toml`
 
 These files are common across projects. Project-specific commands, ports,
-architecture notes, and release rules belong in the target repo after install.
+architecture notes, tool paths, GitHub accounts, and release rules belong in the
+target repo after install.
 
 ## Operating Loop
 
 1. Open Codex on the target checkout.
 2. Read `AGENTS.md`.
 3. Read `docs/agent-workflow.md`.
-4. Check `docs/queue.md` and `docs/knowledge.md`.
-5. Define success criteria.
-6. Make the smallest coherent change.
-7. Verify.
-8. Commit and push finished repo-visible work unless the user asks for
+4. Check `docs/project-routing.md` before cross-repo, GitHub, release, or
+   publish work.
+5. Check `docs/tools.md` before using repo-specific or user-local tools.
+6. Check `docs/queue.md` and `docs/knowledge.md`.
+7. Define success criteria.
+8. Make the smallest coherent change.
+9. Verify.
+10. Commit and push finished repo-visible work unless the user asks for
    local-only work.
 
 ## Parallel Work

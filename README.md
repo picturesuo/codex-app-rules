@@ -6,6 +6,10 @@ This repo gives projects a small, durable agent surface:
 
 - `AGENTS.md`: hard rules, coding posture, and publish policy.
 - `docs/agent-workflow.md`: the working loop.
+- `docs/project-routing.md`: repo identity, GitHub, publish, and related-project
+  routing.
+- `docs/tools.md`: local tool catalog, auth source names, permissions, and
+  known limits.
 - `docs/workflow-packaging-audit.md`: when to create a skill, subagent,
   automation, extension, or skip.
 - `docs/queue.md`: the next small task.
@@ -42,6 +46,10 @@ They also define the publish path: inspect branch and dirty state, preserve
 other people's changes, verify, commit, and push finished repo-visible work
 unless the user asks for local-only work.
 
+Project-specific GitHub accounts, remotes, release rules, tool paths, and
+related repos belong in the installed target repo docs. The shared templates
+provide safe places to record them without storing secrets.
+
 ## Sources
 
 - OpenAI Codex best practices: https://developers.openai.com/codex/learn/best-practices
@@ -51,4 +59,5 @@ unless the user asks for local-only work.
 - Karpathy `program.md`: https://github.com/karpathy/autoresearch/blob/master/program.md
 - Karpathy-inspired `CLAUDE.md`: https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md
 - Steinberger agent scripts: https://github.com/steipete/agent-scripts
+- Steinberger tools catalog: https://github.com/steipete/agent-scripts/blob/main/tools.md
 - Simon Willison on parallel coding agents: https://simonwillison.net/2025/Oct/5/parallel-coding-agents/
