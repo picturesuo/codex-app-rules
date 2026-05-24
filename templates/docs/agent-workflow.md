@@ -1,34 +1,34 @@
 # Agent Workflow
 
-## Codex App Loop
+## Loop
 
 1. Read AGENTS.md, then this file.
-2. Check docs/queue.md for the next task and docs/knowledge.md for durable facts.
-3. Define success criteria before editing.
-4. Make the smallest coherent change.
-5. Run the proof that matches the risk.
-6. Update status, changed files, verification, and next action.
+2. Check docs/queue.md for current work.
+3. Check docs/knowledge.md for durable facts.
+4. Define success criteria before editing.
+5. Make the smallest coherent change.
+6. Run the narrowest useful proof.
+7. Record status, changed files, verification, and next action.
+8. Commit and push finished repo-visible work unless the user asked for
+   local-only work.
 
-## Workflow Packaging
+## Context
 
-- Use docs/workflow-packaging-audit.md before creating a new skill, subagent,
-  automation, or recurring workflow asset.
-- Reuse or extend existing skills, docs, scripts, and automations before adding
-  another artifact.
-- Create only high-confidence missing items with stable inputs, a repeatable
-  procedure, and a clear stopping condition.
+- Current task state belongs in the active thread, shared context, or queue.
+- Durable facts belong in docs/knowledge.md.
+- Stable behavior belongs in AGENTS.md.
+- Around 80% context used, compact or hand off after recording status.
 
-## Context Reset
+## Parallel Work
 
-- Treat about 80% context used as the reset point.
-- Before compacting or starting a fresh Codex app thread, update current status.
-- Keep current task state outside AGENTS.md.
-- Keep durable reusable knowledge in docs/knowledge.md.
+- Split only when tasks have clear file ownership.
+- Use one Codex thread per file, feature slice, or proof.
+- Do not let two sessions edit the same file unless one session sequences the work.
+- Finished sessions report changed files, verification, residual risk, and ship status.
 
-## Ship Path
+## Publish Path
 
-- Follow the repo-local AGENTS.md.
-- Publish mode is auto unless the user explicitly asks for local-only work.
-- Commit and push only verified repo-visible work.
-- Prefer focused commits; use one commit per finished file when practical.
-- Keep private, scratch, partial, failing, and unverified work out of the publish path.
+- Follow the `AGENTS.md` publish path.
+- Confirm branch and origin before publishing.
+- Include changed files, verification, residual risk, and ship status in the
+  handoff.

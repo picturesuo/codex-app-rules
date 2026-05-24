@@ -1,53 +1,53 @@
 # Codex App Rules
 
-Portable Codex app rules, templates, and workflow docs for repo-local agent
-setup.
+Common Codex app rules for any repo.
 
-This repo packages the Codex-app-first workflow that came out of the
-cmux/Ghostty launcher work:
+This repo gives projects a small, durable agent surface:
 
-- `AGENTS.md` as the durable agent contract.
-- `docs/agent-workflow.md` as the session loop.
-- `docs/workflow-packaging-audit.md` as the "should this become a skill,
-  subagent, automation, extension, or skip?" playbook.
-- `.codex/config.toml` as repo-scoped Codex defaults.
-- `docs/queue.md` and `docs/knowledge.md` as small mutable/durable context
-  surfaces.
+- `AGENTS.md`: hard rules, coding posture, and publish policy.
+- `docs/agent-workflow.md`: the working loop.
+- `docs/workflow-packaging-audit.md`: when to create a skill, subagent,
+  automation, extension, or skip.
+- `docs/queue.md`: the next small task.
+- `docs/knowledge.md`: durable project facts and user preferences.
+- `.codex/config.toml`: repo-scoped Codex defaults.
 
-## Install Into A Project
+## Install
+
+From this repo:
+
+```bash
+bin/install-codex-rules /path/to/project
+```
 
 From a target repo:
 
 ```bash
-cp /Users/bensuo/Desktop/codex-app-rules/templates/AGENTS.md AGENTS.md
-mkdir -p docs .codex
-cp /Users/bensuo/Desktop/codex-app-rules/templates/docs/*.md docs/
-cp /Users/bensuo/Desktop/codex-app-rules/templates/.codex/config.toml .codex/config.toml
+/Users/bensuo/Desktop/codex-app-rules/bin/install-codex-rules
 ```
 
-If a project already has any of those files, merge by hand instead of
-overwriting. The target repo's own rules win.
+The installer copies only missing files. Existing project instructions are left
+alone and should be merged by hand.
 
-## What The Rules Do
+## Contract
 
-The seeded `AGENTS.md` adapts the Karpathy-inspired `CLAUDE.md` rules into
-Codex:
+The shared rules adapt the Karpathy-inspired `CLAUDE.md` pattern for Codex:
 
-- Think before coding.
-- Simplicity first.
-- Surgical changes.
-- Goal-driven execution.
+- think before coding;
+- simplicity first;
+- surgical changes;
+- goal-driven execution.
 
-It also carries a Steinberger-style publish path: inspect branch and dirty
-state, preserve user changes, verify, commit, and push finished repo-visible
-work unless the user asks for local-only work.
+They also define the publish path: inspect branch and dirty state, preserve
+other people's changes, verify, commit, and push finished repo-visible work
+unless the user asks for local-only work.
 
 ## Sources
 
 - OpenAI Codex best practices: https://developers.openai.com/codex/learn/best-practices
 - OpenAI Codex Memories: https://developers.openai.com/codex/memories
 - OpenAI Codex Chronicle: https://developers.openai.com/codex/memories/chronicle
-- Karpathy autoresearch: https://github.com/karpathy/autoresearch
+- Karpathy `autoresearch`: https://github.com/karpathy/autoresearch
 - Karpathy `program.md`: https://github.com/karpathy/autoresearch/blob/master/program.md
 - Karpathy-inspired `CLAUDE.md`: https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md
 - Steinberger agent scripts: https://github.com/steipete/agent-scripts

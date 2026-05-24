@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TARGET="${1:-$PWD}"
+
+usage() {
+  cat <<'EOF'
+usage: bin/install-codex-rules [target-repo]
+
+Copies missing Codex app rule templates into target-repo.
+Existing files are left untouched.
+EOF
+}
+
+case "${1:-}" in
+  -h|--help)
+    usage
+    exit 0
+    ;;
+esac
+
+if [ ! -d "$TARGET" ]; then
+  printf 'target is not a directory: %s\n' "$TARGET" >&2
+  exit 1
+fi
+
+TARGET_ABS="$(cd "$TARGET" && pwd)"
+
+if [ "$TARGET_ABS" = "$ROOT" ]; then
+  printf 'refusing to install templates into this rules repo; pass a target repo path\n' >&2
+  exit 1
+fi
+
+mkdir -p "$TARGET/docs" "$TARGET/.codex"
+
+copy_if_missing() {
+  local src=$1
+  local dst=$2
+
+  if [ -e "$dst" ]; then
+    printf 'skip existing %s\n' "${dst#$TARGET/}"
+    return
+  fi
+
+  cp "$src" "$dst"
+  printf 'create %s\n' "${dst#$TARGET/}"
+}
+
+copy_if_missing "$ROOT/templates/AGENTS.md" "$TARGET/AGENTS.md"
+copy_if_missing "$ROOT/templates/docs/agent-workflow.md" "$TARGET/docs/agent-workflow.md"
+copy_if_missing "$ROOT/templates/docs/workflow-packaging-audit.md" "$TARGET/docs/workflow-packaging-audit.md"
+copy_if_missing "$ROOT/templates/docs/queue.md" "$TARGET/docs/queue.md"
+copy_if_missing "$ROOT/templates/docs/knowledge.md" "$TARGET/docs/knowledge.md"
+copy_if_missing "$ROOT/templates/.codex/config.toml" "$TARGET/.codex/config.toml"

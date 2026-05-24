@@ -1,13 +1,13 @@
 ---
-summary: External patterns adapted into these Codex app rules.
+summary: Source patterns behind the common Codex app rules.
 read_when:
-  - You are changing AGENTS.md or template behavior.
-  - You need to understand where the rules came from.
+  - You are changing AGENTS.md or templates.
+  - You need to know why a rule exists.
 ---
 
 # Source Inspirations
 
-## Karpathy Autoresearch
+## Karpathy
 
 Sources:
 
@@ -18,15 +18,15 @@ Sources:
 Adapted patterns:
 
 - Markdown is the agent program.
-- Keep the harness small enough for the agent to understand.
-- Name editable and read-only surfaces explicitly.
-- Use fixed evaluation loops when possible.
-- Keep or discard changes based on measured output.
-- Prefer simplicity when outcomes are equivalent.
-- Use four compact coding-agent rules: think before coding, simplicity first,
-  surgical changes, and goal-driven execution.
+- The harness should be small enough to understand.
+- Name editable and read-only surfaces.
+- Define the proof before editing.
+- Keep measured wins; discard failures.
+- Prefer simpler code when outcomes tie.
+- Use four coding rules: think before coding, simplicity first, surgical
+  changes, and goal-driven execution.
 
-## Steinberger Agent Scripts
+## Steinberger
 
 Sources:
 
@@ -36,14 +36,13 @@ Sources:
 
 Adapted patterns:
 
-- Keep global agent rules terse.
-- Put routing, secrets, git, release, and CI behavior where agents will see it.
-- Prefer exact local commands over generic advice.
-- Treat dirty worktrees and unknown changes as important state.
-- Use explicit publish policy.
-- Commit and push finished repo-visible changes after verification.
+- Keep agent rules terse.
+- Put secrets, git, release, and CI behavior where agents will see it.
+- Prefer exact local commands.
+- Treat dirty worktrees as state, not noise.
+- Make publish policy explicit.
 
-## OpenAI Codex App Workflows
+## OpenAI Codex
 
 Sources:
 
@@ -53,14 +52,14 @@ Sources:
 
 Adapted patterns:
 
-- Keep personal defaults in `~/.codex/config.toml`.
-- Keep repo-specific behavior in `.codex/config.toml`, `AGENTS.md`, and docs.
-- Use skills for narrow repeated workflows.
-- Use automations for specific repeatable scheduled work.
-- Use Memories for stable preferences and Chronicle for discovery, then confirm
-  important facts in the source system.
+- Personal defaults belong in `~/.codex/config.toml`.
+- Repo behavior belongs in `.codex/config.toml`, `AGENTS.md`, and docs.
+- Skills are for narrow repeated workflows.
+- Automations are for repeatable scheduled work.
+- Memories and Chronicle are discovery aids; confirm important facts in source
+  systems.
 
-## Simon Willison Parallel Agents
+## Simon Willison
 
 Source:
 
@@ -68,7 +67,6 @@ Source:
 
 Adapted patterns:
 
-- Use parallel agents for research, archaeology, small maintenance, and clearly
-  specified implementation work.
-- Preserve useful findings in docs or shared context so future prompts start
-  with better local knowledge.
+- Parallel agents work best for research, archaeology, small maintenance, and
+  clearly specified implementation.
+- Save useful findings so later sessions start with better local knowledge.

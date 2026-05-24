@@ -12,8 +12,8 @@
 
 ## Blocked
 
-- [ ] No blockers recorded yet.
+- [ ] No blockers recorded.
 
-## Discovered While Working
+## Later
 
-- [ ] Add useful follow-ups here instead of expanding the active task.
+- [ ] Add follow-ups here instead of expanding the active task.

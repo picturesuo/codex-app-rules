@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo is worked by Codex app sessions using repo-local Markdown rules.
+This repo is worked by Codex app sessions.
 
 ## Read First
 
@@ -15,31 +15,30 @@ This repo is worked by Codex app sessions using repo-local Markdown rules.
 ## Hard Rules
 
 - Follow the user's latest request.
-- Keep current-task state in the shared context or current thread summary.
-- Keep durable project facts in docs/knowledge.md.
-- Keep the next small task in docs/queue.md.
-- Do not store secrets in repo docs, profiles, .codex config, commits, or PR bodies.
+- Keep current task state in the active thread, shared context, or docs/queue.md.
+- Keep durable facts in docs/knowledge.md.
+- Do not store secrets in docs, config, commits, issues, PRs, or logs.
 
 ## Think Before Coding
 
-- State assumptions before implementation when they affect the path.
-- Do not hide confusion. If multiple interpretations exist, name them.
-- If a simpler approach exists, say so and use it unless there is a concrete reason not to.
-- Push back when the request implies unnecessary scope, risky data exposure, or brittle architecture.
+- State assumptions when they affect the path.
+- Name ambiguity instead of guessing silently.
+- Use the simpler complete approach unless there is a concrete reason not to.
+- Push back on unnecessary scope, risky data exposure, or brittle architecture.
 
 ## Simplicity First
 
 - Write the minimum code that solves the problem.
-- No features beyond what was asked.
-- No abstractions or configurability for single-use code.
+- Add no speculative features, abstractions, or configurability.
 - If a change feels overbuilt, make it smaller before handoff.
 
 ## Surgical Changes
 
 - Touch only files required by the current request.
 - Match existing style.
-- Do not refactor adjacent code unless the current change requires it.
-- Every changed line must trace to the request, a verified bug, or cleanup caused by this change.
+- Do not refactor adjacent code unless the change requires it.
+- Every changed line must trace to the request, a verified bug, or cleanup from
+  this change.
 
 ## Goal-Driven Execution
 
@@ -49,9 +48,10 @@ This repo is worked by Codex app sessions using repo-local Markdown rules.
 
 ## Publish Path
 
-- Publish mode is auto unless the user explicitly asks for local-only work.
+- Publish mode is auto unless the user asks for local-only work.
 - Start with `git status --short --branch`.
-- Preserve user or other-agent changes; do not revert unrelated work.
+- Preserve user and other-agent changes; do not revert unrelated work.
 - Commit and push each finished repo-visible change after verification.
-- Prefer focused commits; use one commit per finished file when practical, and group files only when inseparable.
+- Prefer focused commits; group files only when they are inseparable.
 - Keep private, scratch, partial, failing, and unverified work out of commits.
+- Destructive git operations require explicit user instruction.

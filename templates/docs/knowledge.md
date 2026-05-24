@@ -1,14 +1,14 @@
 # Knowledge
 
-## User-Provided Knowledge
+## User Guidance
 
-- Capture durable user guidance, preferences, and constraints that should survive a single task.
+- Capture durable user preferences and constraints.
 
 ## Project Facts
 
 - Capture stable project facts, decisions, and summaries worth reusing.
 
-## Retrieval Hints
+## Retrieval
 
 - Search this file and nearby repo docs with `rg` before broader search.
-- Label each note by source when useful: `user`, `repo`, or `external`.
+- Label notes by source when useful: `user`, `repo`, or `external`.

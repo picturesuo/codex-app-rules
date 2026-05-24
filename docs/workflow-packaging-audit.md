@@ -1,95 +1,83 @@
 ---
-summary: Audit repeated work and package only the smallest useful Codex asset.
+summary: Decide whether repeated work deserves a Codex asset.
 read_when:
   - The user asks what should become a skill, subagent, or automation.
-  - You are turning sessions, Memories, or Chronicle evidence into reusable workflow assets.
+  - You are converting repeated work into reusable process.
 ---
 
 # Workflow Packaging Audit
 
 ## Goal
 
-Find repeated manual work worth packaging for Codex, then create only the
-high-confidence missing asset. The default outcome can be "skip" when evidence
-is thin, sensitive, too broad, or already covered.
+Find repeated manual work worth packaging, then create only the smallest
+high-confidence missing asset. "Skip" is a valid outcome.
 
 ## Evidence Order
 
-Use the strongest available evidence first:
+1. Recent Codex sessions, task summaries, shared context, and repo docs.
+2. Codex Memories and rollout summaries.
+3. Chronicle, if enabled, for discovery only.
+4. Existing skills, subagents, automations, docs, and scripts.
 
-1. Recent Codex sessions, task summaries, shared context files, and repo docs.
-2. Codex Memories and rollout summaries for patterns repeated across sessions.
-3. Chronicle, when enabled, for discovery only. Confirm important details in
-   the source system before acting.
-4. Existing skills, custom subagents, automations, project docs, and scripts.
-
-Do not use screenshots, Chronicle notes, Memories, or session summaries as a
-source of truth for sensitive facts. Treat them as leads and verify in the
-repo, tracker, document, calendar, or CLI that owns the work.
+Confirm important details in the source system before acting. Memories,
+Chronicle, screenshots, and summaries are leads, not source of truth.
 
 ## Candidate Test
 
-Package a workflow only when it passes all of these checks:
+Package work only when it:
 
-- It happened at least twice, or is clearly likely to recur and costly to repeat.
-- It has stable inputs, a repeatable procedure, and a clear output or stopping
-  condition.
-- It improves speed, quality, consistency, or reliability enough to justify the
-  extra artifact.
-- Existing skills, subagents, automations, docs, or scripts do not already cover
-  it well.
+- happened at least twice, or is clearly likely to recur and costly to repeat;
+- has stable inputs, a repeatable procedure, and a clear stopping condition;
+- improves speed, quality, consistency, or reliability;
+- is not already covered well enough.
 
-Skip work that is one-off, ambiguous, secret-heavy, too personal to encode,
-poorly evidenced, or better handled by a normal prompt.
+Skip work that is one-off, ambiguous, sensitive, poorly evidenced, or better
+handled by a normal prompt.
 
 ## Smallest Useful Form
 
-- Skill: reusable method, playbook, or tool workflow.
-- Custom subagent: bounded specialist investigation or review role.
-- Automation: scheduled or recurring check, report, reminder, or monitor.
-- Extend existing: small improvement to a current skill, doc, script,
-  automation, or agent instruction.
+- Skill: reusable method or tool workflow.
+- Subagent: bounded specialist investigation or review.
+- Automation: scheduled check, report, reminder, or monitor.
+- Extend existing: improve a current skill, doc, script, automation, or rule.
 - Skip: not worth packaging yet.
 
-Prefer extension over duplication. Prefer a short doc or script over a skill
-when the workflow belongs only to one repo. Prefer an automation only after the
-interactive prompt shape has worked at least once and the output is easy to
-review.
+Prefer extension over duplication. Prefer a repo doc or script over a skill when
+the workflow belongs only to one repo. Prefer automation only after the prompt
+shape has worked and the output is easy to review.
 
-## Shortlist Format
+## Shortlist
 
 ```text
-Repeated workflow:
+Workflow:
 Evidence and dates:
 Frequency/confidence:
 Recommended form:
-Worth creating because:
 Already covered by:
 Decision:
+Reason:
 ```
-
-Include "skip" decisions in the shortlist so future sessions can see what was
-considered and why it was not packaged.
 
 ## Creation Rules
 
-Create only high-confidence missing items. Keep each created asset narrow:
+Create only high-confidence missing items. Name:
 
-- expected inputs;
-- exact procedure or delegation boundary;
-- output and stopping condition;
-- verification step;
-- source systems it may consult;
+- inputs;
+- procedure or delegation boundary;
+- output;
+- stopping condition;
+- verification;
+- source systems;
 - privacy limits.
 
-Do not create speculative, overlapping, or broad assets. If the candidate needs
-more evidence, write the missing evidence requirement instead.
+Do not create speculative, overlapping, or broad assets. If evidence is missing,
+say what evidence is needed.
 
-## Finish Format
+## Finish
 
 ```text
 Created or extended:
-Deliberately skipped:
+Skipped:
 Needs more evidence:
 Verification:
 ```

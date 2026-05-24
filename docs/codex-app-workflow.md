@@ -1,25 +1,26 @@
 ---
-summary: Codex-app-first workflow and seeded project files.
+summary: Why the common Codex app files exist.
 read_when:
-  - You are installing these rules in a repo.
-  - You are deciding how Codex app sessions should replace terminal-first workflow.
+  - You are installing or changing the shared rules.
+  - You are deciding what belongs in the common template set.
 ---
 
 # Codex App Workflow
 
 ## Goal
 
-Make the Codex desktop app the primary work surface while preserving the useful
-parts of terminal launchers:
+Make any repo easy for Codex to enter, understand, verify, and ship from.
 
-- repo-local Markdown that programs the agent loop;
-- shared task context and durable knowledge;
-- clear verification, commit, and push behavior;
-- small reusable workflow audits instead of giant prompts.
+The common files should do only durable work:
 
-## Seeded Files
+- tell Codex how to behave;
+- name the working loop;
+- preserve stable project knowledge;
+- keep the next task visible;
+- define when repeated work deserves packaging;
+- set repo-scoped Codex defaults.
 
-The template set is:
+## Template Set
 
 - `AGENTS.md`
 - `docs/agent-workflow.md`
@@ -28,35 +29,30 @@ The template set is:
 - `docs/knowledge.md`
 - `.codex/config.toml`
 
-Existing target files should be merged by hand, not overwritten.
+These files are common across projects. Project-specific commands, ports,
+architecture notes, and release rules belong in the target repo after install.
 
-## Operating Model
+## Operating Loop
 
 1. Open Codex on the target checkout.
-2. Tell Codex the task in normal language.
-3. Let Codex read `AGENTS.md`, `docs/agent-workflow.md`, `docs/queue.md`,
-   `docs/knowledge.md`, and any shared context file.
-4. Define success criteria before editing.
-5. Make the smallest coherent change.
-6. Run the proof that matches the risk.
-7. Commit and push verified repo-visible work unless the user asks for
+2. Read `AGENTS.md`.
+3. Read `docs/agent-workflow.md`.
+4. Check `docs/queue.md` and `docs/knowledge.md`.
+5. Define success criteria.
+6. Make the smallest coherent change.
+7. Verify.
+8. Commit and push finished repo-visible work unless the user asks for
    local-only work.
 
 ## Parallel Work
 
 - Use one Codex thread per coherent unit of work.
-- Split only when file ownership or proof boundaries are clear.
+- Split only when ownership is clear.
 - Use subagents for bounded research, tests, triage, or archaeology.
-- Finished sessions should report changed files, verification, residual risk,
-  and ship status.
+- Report changed files, verification, residual risk, and ship status before
+  handoff.
 
-## Adapted Patterns
+## Design Standard
 
-- Karpathy: Markdown is the program; name editable and read-only surfaces;
-  measure outputs; keep only changes that improve the result or simplify.
-- Karpathy-inspired `CLAUDE.md`: think before coding, simplicity first,
-  surgical changes, and goal-driven execution.
-- Steinberger: terse rules, explicit routing, exact local commands, visible
-  publish policy, and small verified commits.
-- OpenAI Codex docs: personal defaults live in `~/.codex/config.toml`; repo
-  behavior lives in `.codex/config.toml`, `AGENTS.md`, and repo docs.
+Every common rule must earn its place by preventing a likely mistake across many
+repos. If a rule only fits one project, put it in that project's docs.
