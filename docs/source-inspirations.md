@@ -64,6 +64,7 @@ Sources:
 - https://x.com/Aizcalibur/status/2039808212107505700
 - https://x.com/alex_prompter/status/2039853870810108384
 - https://x.com/karpathy/status/1872038630405054853
+- https://x.com/blader/status/2058303538674217319
 
 Adapted patterns:
 
@@ -74,6 +75,8 @@ Adapted patterns:
 - Capture tool gotchas where they are read, not in scattered conversation
   history.
 - Reduce cognitive load by making the next action and the right file obvious.
+- For long goal runs, use a fresh adversarial review gate before marking work
+  done so missed proof, regressions, and overbuilt paths surface early.
 
 ## OpenAI Codex
 

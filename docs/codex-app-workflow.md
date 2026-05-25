@@ -57,6 +57,8 @@ agent workflows:
 - explore and plan before large edits, but skip ceremony for obvious changes;
 - keep context lean by sending noisy search, logs, and review into separate
   threads or subagents;
+- add an adversarial done gate for long `/goal` runs so a fresh reviewer
+  challenges completion before plan items are marked done;
 - prefer measurable loops: run proof, inspect output, keep the change only when
   it improves the target without needless complexity;
 - use tools deliberately: repo scripts first, CLIs before broad integrations,

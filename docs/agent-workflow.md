@@ -44,8 +44,9 @@ coding.
 6. Define success criteria before editing.
 7. Make the smallest coherent change.
 8. Run the narrowest useful proof.
-9. Record status, changed files, verification, and next action.
-10. Commit and push finished repo-visible work unless the user asked for
+9. Run the adversarial done gate for nontrivial or `/goal` work.
+10. Record status, changed files, verification, and next action.
+11. Commit and push finished repo-visible work unless the user asked for
    local-only work.
 
 ## Context
@@ -90,6 +91,38 @@ files.
 - For bugs, prefer a reproducer or regression test before the fix.
 - For high-risk changes, use a fresh review context so the reviewer is not
   anchored to the implementation path.
+
+## Adversarial Done Gate
+
+Use this gate for `/goal` runs, long-running plans, multi-step edits,
+security-sensitive changes, or any task where "done" depends on more than one
+obvious check. For tiny, obvious edits, a direct self-review can satisfy the
+gate.
+
+Before marking a task or plan item done:
+
+1. Restate the success criteria and evidence gathered.
+2. Ask a fresh reviewer, preferably a subagent or separate thread, to attack the
+   completion claim using only the task brief, relevant diff or artifacts, and
+   verification output.
+3. Have the reviewer return `pass`, `gap`, or `blocker`, with the smallest
+   evidence needed.
+4. If a material gap appears, do not mark the task done. Fix it, reroute to a
+   different tool or check when the path is wrong, or record the blocker and
+   next decision.
+5. When the gate passes, include the review result in the finish packet.
+
+Prompt shape:
+
+```text
+Adversarial review:
+Goal:
+Done claim:
+Evidence:
+Changed files:
+Look for: missed requirements, unverified assumptions, regressions, overbuilt changes.
+Return: pass, gap, or blocker; include file/line or command evidence when possible.
+```
 
 ## Publish Path
 

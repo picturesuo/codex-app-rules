@@ -51,6 +51,9 @@ This repo is worked by Codex app sessions.
 - Convert vague tasks into verifiable success criteria before editing.
 - For bugs, prefer a check that reproduces the failure before fixing it.
 - Run the narrowest useful proof before committing or pushing.
+- Before marking nontrivial work done, use the adversarial review gate in
+  docs/agent-workflow.md: challenge the completion claim with a fresh subagent
+  or thread when available, then fix or record any material gaps.
 
 ## Publish Path
 

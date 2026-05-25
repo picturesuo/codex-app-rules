@@ -66,6 +66,7 @@ agent may quote, commit, or publish.
 - Keep always-on instructions short; move occasional workflows into skills.
 - Use separate threads or subagents for noisy exploration, logs, long tests, and
   independent review.
+- Use an adversarial done gate before marking meaningful `/goal` work complete.
 - Prefer repo scripts and CLIs before heavier integrations; add MCP or browser
   tools when they close a real feedback loop.
 - Use automations only after the manual workflow is stable and the result is
