@@ -2,71 +2,50 @@
 
 ## Purpose
 
-This repo is worked by Codex app sessions.
+This repo is a Codex app workspace.
 
 ## Read First
 
 - README.md when present.
-- docs/agent-workflow.md
+- docs/agent-workflow.md for edit, verify, and ship.
 - docs/execution-packet.md for long, multi-step, or /goal work.
-- docs/startup-agent-workflow.md for startup, product, or growth work.
-- docs/project-routing.md
-- docs/tools.md
-- docs/workflow-packaging-audit.md
-- docs/adr/ when architecture decisions matter.
-- docs/queue.md
-- docs/knowledge.md
+- docs/startup-agent-workflow.md for product, startup, or growth work.
+- docs/project-routing.md for GitHub, release, deploy, or related repos.
+- docs/tools.md for repo-local commands, auth names, and limits.
+- docs/workflow-packaging-audit.md before creating durable workflow assets.
+- docs/adr/ for architecture or product invariants.
+- docs/queue.md and docs/knowledge.md when resuming or preserving context.
 
-## Hard Rules
+## Rules
 
 - Follow the user's latest request.
-- Keep current task state in the active thread, shared context, or docs/queue.md.
-- Keep durable facts in docs/knowledge.md.
-- Keep durable architecture decisions and invariants in docs/adr/.
-- Keep long-run plan, proof, dogfood path, risks, and handoff state in the
-  active thread or docs/execution-packet.md.
-- Keep repo identity, publish routing, and tool catalogs in docs/project-routing.md
-  or docs/tools.md.
-- Keep each Markdown file focused on one job; prefer links and short maps over
-  duplicated instruction blocks.
-- Do not store secrets in docs, config, commits, issues, PRs, or logs.
-
-## Think Before Coding
-
-- State assumptions when they affect the path.
-- Name ambiguity instead of guessing silently.
-- Use the simpler complete approach unless there is a concrete reason not to.
-- Push back on unnecessary scope, risky data exposure, or brittle architecture.
-
-## Simplicity First
-
-- Write the minimum code that solves the problem.
-- Add no speculative features, abstractions, or configurability.
-- If a change feels overbuilt, make it smaller before handoff.
-
-## Surgical Changes
-
-- Touch only files required by the current request.
-- Match existing style.
-- Do not refactor adjacent code unless the change requires it.
+- State assumptions that affect scope, architecture, data, UX, publish, or proof.
+- Use the simplest complete change; add no speculative features or refactors.
 - Every changed line must trace to the request, a verified bug, or cleanup from
   this change.
+- Keep current task state in the thread, shared context, or docs/queue.md.
+- Keep stable facts in docs/knowledge.md.
+- Keep durable decisions and invariants in docs/adr/.
+- Keep repo identity and tool catalogs in docs/project-routing.md or
+  docs/tools.md.
+- Keep long-run plan, proof, dogfood path, risks, and handoff in the thread or
+  docs/execution-packet.md.
+- Keep each Markdown file to one job; link instead of duplicating.
+- Do not store secrets in docs, config, commits, issues, PRs, or logs.
 
-## Goal-Driven Execution
+## Execution
 
-- Convert vague tasks into verifiable success criteria before editing.
-- For bugs, prefer a check that reproduces the failure before fixing it.
+- Convert vague tasks into success criteria before editing.
+- For bugs, prefer a failing reproducer before the fix.
 - Run the narrowest useful proof before committing or pushing.
-- Before marking nontrivial work done, use the adversarial review gate in
-  docs/agent-workflow.md: challenge the completion claim with a fresh subagent
-  or thread when available, then fix or record any material gaps.
+- Use the adversarial gate in docs/agent-workflow.md before claiming nontrivial,
+  long, or /goal work done.
 
-## Publish Path
+## Publish
 
 - Publish mode is auto unless the user asks for local-only work.
 - Start with `git status --short --branch`.
 - Preserve user and other-agent changes; do not revert unrelated work.
-- Commit and push each finished repo-visible change after verification.
-- Prefer focused commits; group files only when they are inseparable.
+- Commit and push finished repo-visible changes after verification.
 - Keep private, scratch, partial, failing, and unverified work out of commits.
 - Destructive git operations require explicit user instruction.

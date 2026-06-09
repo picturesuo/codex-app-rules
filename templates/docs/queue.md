@@ -7,34 +7,23 @@ read_when:
 
 # Queue
 
-Keep this file small. It is a baton, not a second issue tracker.
+Use this as a baton, not an issue tracker.
 
-## Now
-
-- [ ] Capture the next concrete Codex task.
-
-## Active Threads
+## Current
 
 ```text
 Thread:
 Branch:
 Owner/files:
 Status:
-Execution packet:
 Proof:
-Next decision:
+Next action:
 ```
-
-## Next
-
-- [ ] Add the next smallest shippable step.
-- [ ] Capture the main edge case.
-- [ ] Capture one cleanup item.
 
 ## Blocked
 
-- [ ] No blockers recorded.
+- None recorded.
 
 ## Later
 
-- [ ] Add follow-ups here instead of expanding the active task.
+- Add only follow-ups that should survive the current thread.

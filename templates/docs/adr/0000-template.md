@@ -12,31 +12,29 @@ read_when:
 
 ## Decision
 
-State the decision in one sentence.
+One sentence.
 
 ## Context
 
-Why this decision exists. Include the problem, constraints, and rejected
-pressure that could pull future work off course.
+Problem, constraints, and pressure future work must resist.
 
 ## Details
 
-Explain the chosen shape only as much as a future session needs to implement or
-preserve it.
+Only the shape needed to implement or preserve the decision.
 
 ## Invariants
 
-- List conditions that must stay true for the decision to hold.
+- Conditions that must stay true.
 
 ## Consequences
 
-- Name the tradeoff or failure mode this decision accepts.
-- Name the problem this decision prevents.
+- Accepted tradeoff or failure mode.
+- Problem prevented.
 
 ## References
 
-- Link files, services, tests, docs, issues, or PRs future sessions should read.
+- Files, services, tests, docs, issues, or PRs future sessions should read.
 
 ## Verification
 
-- Name the proof that should fail when the decision is broken.
+- Proof that should fail when the decision is broken.

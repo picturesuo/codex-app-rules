@@ -7,34 +7,34 @@ read_when:
 
 # Knowledge
 
-## User Guidance
+Record only stable facts or preferences that future sessions should not
+rediscover.
 
-- Capture durable user preferences and constraints.
-
-## Project Facts
-
-- Capture stable project facts, decisions, and summaries worth reusing.
-- Move architecture decisions, invariants, and service-boundary rules to
-  docs/adr/ when future sessions must preserve them.
-
-## Retrieval
-
-- Search this file and nearby repo docs with `rg` before broader search.
-- Label notes by source when useful: `user`, `repo`, or `external`.
-- Prefer dated notes for facts that may expire.
-- Remove or revise stale notes when source truth changes.
-
-## Retrospectives
-
-When Codex makes the same mistake twice, add a short note:
+## Notes
 
 ```text
 Date:
 Source:
+Fact/preference:
+Expires or revisit:
+```
+
+## Rules
+
+- Search this file and nearby repo docs with `rg` before broader search.
+- Move commands to docs/tools.md.
+- Move repo identity, publish, or related-project routing to
+  docs/project-routing.md.
+- Move durable architecture decisions and invariants to docs/adr/.
+- Remove or revise stale notes when source truth changes.
+
+## Retrospective
+
+Add a note when Codex makes the same mistake twice:
+
+```text
+Date:
 Observed mistake:
 Preferred behavior:
 Verification:
 ```
-
-If the note is really a command, move it to `docs/tools.md`. If it is really a
-publish or repo-routing rule, move it to `docs/project-routing.md`.

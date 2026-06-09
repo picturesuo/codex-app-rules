@@ -1,9 +1,8 @@
-# Repo-scoped Codex defaults.
-# Keep secrets out of this file.
+# Repo-scoped Codex defaults. No secrets.
 
 model = "gpt-5.5"
 model_reasoning_effort = "medium"
 plan_mode_reasoning_effort = "high"
 
-# Personal sandbox and approval defaults belong in ~/.codex/config.toml unless
-# this repo has a clear reason to tighten or loosen them.
+# Put personal sandbox, approval, MCP, and profile settings in ~/.codex/config.toml
+# unless this repo needs its own boundary.

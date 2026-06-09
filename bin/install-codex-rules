@@ -47,14 +47,20 @@ copy_if_missing() {
   printf 'create %s\n' "${dst#$TARGET/}"
 }
 
-copy_if_missing "$ROOT/templates/AGENTS.md" "$TARGET/AGENTS.md"
-copy_if_missing "$ROOT/templates/docs/agent-workflow.md" "$TARGET/docs/agent-workflow.md"
-copy_if_missing "$ROOT/templates/docs/execution-packet.md" "$TARGET/docs/execution-packet.md"
-copy_if_missing "$ROOT/templates/docs/startup-agent-workflow.md" "$TARGET/docs/startup-agent-workflow.md"
-copy_if_missing "$ROOT/templates/docs/project-routing.md" "$TARGET/docs/project-routing.md"
-copy_if_missing "$ROOT/templates/docs/tools.md" "$TARGET/docs/tools.md"
-copy_if_missing "$ROOT/templates/docs/workflow-packaging-audit.md" "$TARGET/docs/workflow-packaging-audit.md"
-copy_if_missing "$ROOT/templates/docs/adr/0000-template.md" "$TARGET/docs/adr/0000-template.md"
-copy_if_missing "$ROOT/templates/docs/queue.md" "$TARGET/docs/queue.md"
-copy_if_missing "$ROOT/templates/docs/knowledge.md" "$TARGET/docs/knowledge.md"
-copy_if_missing "$ROOT/templates/.codex/config.toml" "$TARGET/.codex/config.toml"
+FILES=(
+  AGENTS.md
+  docs/agent-workflow.md
+  docs/execution-packet.md
+  docs/startup-agent-workflow.md
+  docs/project-routing.md
+  docs/tools.md
+  docs/workflow-packaging-audit.md
+  docs/adr/0000-template.md
+  docs/queue.md
+  docs/knowledge.md
+  .codex/config.toml
+)
+
+for path in "${FILES[@]}"; do
+  copy_if_missing "$ROOT/templates/$path" "$TARGET/$path"
+done

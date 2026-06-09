@@ -7,39 +7,40 @@ read_when:
 
 # Execution Packet
 
-Use this as a compact source of truth for one substantial task. Keep it short
-enough to reread before every major edit.
+Use one packet for one substantial task. Keep it short enough to reread before
+major edits.
 
 ## Goal
 
-What must be true when the task is complete.
+Required end state.
 
 ## Non-Goals
 
-What should stay out of scope.
+Out of scope.
 
 ## Assumptions
 
-- Record assumptions that affect architecture, data exposure, UX, publish path,
-  or proof.
+- Only assumptions that affect architecture, data exposure, UX, publish, or
+  proof.
 
 ## Decisions
 
-- Link ADRs or state the chosen approach in one sentence.
-- Note rejected approaches only when they are likely to be retried.
+- Chosen approach:
+- ADRs:
+- Rejected only if likely to be retried:
 
 ## Scope
 
-- Files or areas expected to change:
-- Files or areas to avoid:
+- Change:
+- Avoid:
 
 ## Plan
 
-- [ ] Smallest shippable step.
-- [ ] Next step.
-- [ ] Final integration or cleanup.
+- [ ] Smallest shippable step
+- [ ] Next step
+- [ ] Final integration or cleanup
 
-## Proof Ladder
+## Proof
 
 - Static checks:
 - Focused tests:
@@ -47,10 +48,10 @@ What should stay out of scope.
 - Runtime smoke:
 - Dogfood path:
 
-## Risks And Rollback
+## Risk
 
-- Main risk:
-- Rollback or mitigation:
+- Risk:
+- Rollback:
 
 ## Handoff
 

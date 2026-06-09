@@ -8,71 +8,52 @@ read_when:
 
 # Tools
 
-Catalog repo-local and user-local tools that Codex may need. Keep entries short,
+Catalog only tools that prevent repeated mistakes. Keep entries short,
 verifiable, and safe to publish.
 
 ## Rules
 
-- Prefer repo scripts and documented package-manager commands before ad hoc
-  shell.
-- Verify a tool exists with `command -v`, `--help`, or the repo docs before
-  using it.
-- Document auth sources by kind only, such as browser profile, 1Password item
-  name, or environment variable name. Never include secret values.
-- Include known limits, required permissions, and fallback commands when they
-  prevent repeated mistakes.
+- Prefer repo scripts and documented package-manager commands.
+- Verify non-obvious tools with `command -v`, `--help`, or repo docs.
+- Name auth sources by kind only: browser profile, 1Password item name, or env
+  var name. Never include secret values.
+- Record limits, permissions, and fallbacks only when they affect work.
 
-## Tool Ladder
-
-Prefer the lowest-context tool that can complete the job:
+## Ladder
 
 1. Repo scripts and package-manager commands.
-2. Purpose-built CLIs such as `gh`, deploy CLIs, test runners, and log tools.
-3. MCP servers or connectors when live external context or actions are needed.
-4. Browser or computer-use tools when the task must inspect or operate UI.
-5. Skills when the tool workflow repeats and needs instructions.
-6. Automations when the workflow is stable, scheduled, and reviewable.
-
-Do not wire in every possible tool. Add one when it removes a real manual loop,
-reduces repeated mistakes, or gives Codex feedback it cannot get from files.
-
-## Add Entries When
-
-- a command is reused across tasks;
-- the correct tool is not the obvious default;
-- auth, rate limits, profiles, or environment setup matter;
-- there is a safer fallback than guessing.
+2. Purpose-built CLIs: `gh`, deploy CLIs, test runners, log tools.
+3. MCP servers/connectors for live external context or actions.
+4. Browser or computer-use tools for UI inspection or operation.
+5. Skills for repeated tool workflows.
+6. Automations for stable scheduled work.
 
 ## GitHub
 
 - Tool: `gh`
-- Use for: issues, PRs, CI runs, releases, comments, and repo identity.
+- Use for: issues, PRs, CI, releases, comments, repo identity.
 - First checks: `gh auth status`; `gh repo view --json nameWithOwner`
-- Notes: use `--body-file` for public issue, PR, or release bodies when text
-  contains shell, env vars, quotes, or user-provided content.
+- Note: use `--body-file` for public text containing shell, env vars, quotes, or
+  user-provided content.
 
-## Visual And Runtime Context
+## Visual Or Runtime Proof
 
-- Prefer screenshots, browser inspection, logs, and local runtime checks for UI
-  or behavior bugs.
-- Record the dev server command, port, browser profile, and any login-safe test
-  account here when they are stable.
-- For frontend work, proof should include what Codex actually saw, not only that
-  the code compiled.
-- Prefer the in-app browser for unauthenticated local web routes. Use computer
-  use only when the task depends on a graphical app or signed-in/user-profile
-  state that lower-context tools cannot inspect.
-- Keep dogfood tasks scoped to one app, route, or workflow at a time, and record
-  screenshots, logs, or exact UI state when they are the proof.
+- For UI or behavior bugs, prefer screenshots, browser inspection, logs, and
+  local runtime checks.
+- Record stable dev server command, port, browser profile, and login-safe test
+  account here.
+- Use the in-app browser for unauthenticated local web routes.
+- Use computer use only when lower-context tools cannot inspect the needed GUI
+  or signed-in state.
 
-## Tool Entry Template
+## Entry
 
 ```text
 Name:
 Use for:
-Location or install check:
-Common commands:
-Auth or permissions:
-Known limits:
+Install check:
+Commands:
+Auth/permissions:
+Limits:
 Fallback:
 ```

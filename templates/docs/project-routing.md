@@ -8,29 +8,26 @@ read_when:
 
 # Project Routing
 
-Use this file for repo-specific routing that should survive across Codex
-sessions. Do not store tokens, passwords, API keys, private customer data, or
-other secrets here.
+Store repo routing that should survive Codex sessions. No tokens, passwords,
+API keys, private customer data, or other secrets.
 
-## Project Identity
+## Identity
 
 - GitHub repo:
 - Default branch:
-- Primary local checkout:
-- Related local checkouts:
-- Package manager/runtime:
+- Primary checkout:
+- Related checkouts:
+- Runtime/package manager:
 
-## GitHub And Publish
+## Publish
 
-- Derive the current repo from `gh repo view` or `git remote get-url origin`
-  before reading, commenting, pushing, or opening PRs.
+- Derive repo identity with `gh repo view` or `git remote get-url origin`.
 - Run `gh auth status` when the active GitHub account matters.
-- If multiple GitHub accounts, remotes, forks, or orgs could apply, ask before
-  publishing or commenting.
-- Record release, deploy, changelog, or CI rules here only when they are stable
-  for this repo.
+- Ask before writing if account, fork, organization, branch, or release target
+  is ambiguous.
+- Record stable release, deploy, changelog, or CI rules here.
 
-## Quick Checks
+## Checks
 
 ```bash
 git status --short --branch
@@ -39,30 +36,19 @@ gh repo view --json nameWithOwner --jq .nameWithOwner
 gh auth status
 ```
 
-Use read-only checks freely. Before write actions, confirm ambiguity around
-account, fork, organization, branch, or release target.
+## Surfaces
 
-## Work Surfaces
+- Local app thread: real checkout, local tools, browser/screenshots, active user
+  steering.
+- Worktree/cloud/background task: independent work with clear setup and branch.
+- Automation: stable recurring checks, summaries, triage, or reports.
+- Mobile/quick capture: small idea to review later on the main machine.
 
-- Local app thread: best for changes that need the real checkout, local tools,
-  browser inspection, screenshots, or active user steering.
-- Cloud or background task: best for independent backlog work with clear setup,
-  a clean branch, and no private local state.
-- Automation: best for stable recurring checks, summaries, triage, or reports.
-- Mobile or quick-capture task: best for parking a small idea that will be
-  reviewed later on the main machine.
-
-When moving work between surfaces, record the branch, task URL or thread name,
-proof already gathered, and the next decision needed.
+When moving work, record branch, task URL or thread name, proof gathered, and
+next decision.
 
 ## Related Projects
 
-- Stay in the current checkout unless the user asks for another repo or this
-  file names a related project needed for the task.
-- When work spans repos, record the source repo, target repo, branch, and proof
-  needed for each one.
-
-## Maintenance
-
-- Update this file when the repo moves, the default branch changes, the publish
-  path changes, or a repeated routing question comes up twice.
+Stay in this checkout unless the user asks for another repo or this file names a
+required related project. For cross-repo work, record repo, branch, ownership,
+and proof for each repo.

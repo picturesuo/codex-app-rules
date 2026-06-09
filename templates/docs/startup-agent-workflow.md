@@ -11,16 +11,9 @@ read_when:
 
 Ship fast loops, preserve durable decisions, and measure learning.
 
-Peter-style: talk directly, keep blast radius small, dogfood the UI.
-Karpathy-style: write the agent program, constrain the editable surface, run a
-fixed-budget loop, keep wins, discard losses.
-
-For a startup, combine them:
-
-- conversation aligns taste and product judgment;
-- execution packets drive one substantial task;
-- ADRs preserve decisions future agents must not casually undo;
-- proof loops decide whether work survives.
+Startup use: talk directly, keep blast radius small, dogfood the UI, write the
+agent program, constrain the editable surface, measure the loop, keep wins, and
+discard losses.
 
 ## Startup Loop
 
@@ -34,45 +27,39 @@ Product promise:
 Fastest proof:
 ```
 
-2. Align before coding.
-   Ask Codex to read the relevant code, docs, ADRs, metrics, and customer
-   context. It should return 2-3 approaches, one recommendation, and up to 5
-   questions that would change architecture, UX, data exposure, business risk,
-   or proof.
+2. Align before coding:
+   read code, docs, ADRs, metrics, and customer context; return 2-3 approaches,
+   one recommendation, up to 5 questions, and proof.
 
-3. Preserve only real decisions.
-   Create an ADR when the answer should constrain future work. Skip ADRs for
-   routine implementation details.
+3. Preserve only real decisions:
+   write an ADR only when future work must obey the answer.
 
-4. Program the run.
-   For long work, create an execution packet. For repeatable measurable loops,
-   make it Karpathy-simple: editable surface, read-only surface, fixed budget,
-   metric, log, keep/discard rule.
+4. Program the run:
+   for long work, create an execution packet; for repeatable loops, name
+   editable surface, read-only surface, budget, metric, log, keep/discard rule.
 
-5. Build the smallest complete slice.
-   Prefer one customer-observable path over broad infrastructure. Avoid
-   speculative settings, abstractions, dashboards, and future integrations.
+5. Build the smallest complete slice:
+   prefer one customer-observable path over broad infrastructure.
 
-6. Dogfood.
-   Use the closest real feedback loop: test, build, runtime smoke, browser,
-   screenshot, computer use, or end-to-end path.
+6. Dogfood:
+   test, build, runtime smoke, browser, screenshot, computer use, or end-to-end
+   path.
 
-7. Review like an owner.
-   Look for missed customer promise, security/data exposure, billing/auth gaps,
-   regressions, missing proof, and overbuilt scope.
+7. Review like an owner:
+   missed promise, data/security, billing/auth, regressions, missing proof,
+   overbuilt scope.
 
-8. Ship or stop.
-   Commit and push verified work. If the work does not improve the target,
-   shrink it, discard your own failed path, or record the blocker.
+8. Ship or stop:
+   commit and push verified work; shrink, discard, or record the blocker if the
+   target did not improve.
 
-9. Feed the loop.
-   When a mistake repeats, add the smallest durable guardrail: test, command,
-   doc, ADR, script, skill, or automation.
+9. Feed the loop:
+   repeated mistakes get the smallest guardrail: test, command, doc, ADR,
+   script, skill, or automation.
 
 ## ADRs
 
-An ADR is a small decision receipt. It exists so future agents preserve the
-reasoning, not just the code shape.
+An ADR is a small decision receipt.
 
 Write one for:
 
@@ -88,7 +75,7 @@ Write one for:
 Skip one for naming, routine refactors, one-off copy, obvious local code shape,
 or anything already enforced by tests.
 
-Prompt:
+ADR prompt:
 
 ```text
 Turn the decision we just aligned on into a compact ADR.
@@ -151,7 +138,7 @@ Use an isolated worktree for parallel write-heavy work.
 ## Weekly Rhythm
 
 - Pick one customer-facing bet and one risk-reduction task.
-- Run one execution packet or tight shipping loop each day.
+- Run one execution packet or tight shipping loop daily.
 - Dogfood and review before ship.
 - Capture only repeated friction or durable decisions.
 - Prune queue and docs weekly.

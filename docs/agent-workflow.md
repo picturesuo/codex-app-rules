@@ -2,7 +2,7 @@
 summary: The common Codex app working loop.
 read_when:
   - You are deciding whether to edit, verify, commit, or push.
-  - You are tightening the shared workflow templates.
+  - You are resuming, compacting, reviewing, or handing off work.
 ---
 
 # Agent Workflow
@@ -11,67 +11,51 @@ read_when:
 
 Move from request to verified change with the smallest useful context surface.
 
-Keep three things clear:
+Keep three things explicit:
 
-- target: what outcome matters;
+- target: the outcome that matters;
 - boundary: what must not drift;
 - proof: what would show the work is wrong.
 
-## Task Brief
+## Brief
 
-For nontrivial work, start with:
+For nontrivial work, write or infer:
 
 ```text
 Goal:
 Context:
 Constraints:
-Done when:
+Proof:
 ```
 
-If architecture, data exposure, UX, or publish behavior is unclear, pause for
-alignment before coding.
+If architecture, data exposure, UX, or publish behavior is unclear, align before
+coding. Return 2-3 approaches, one recommendation, up to 5 questions that would
+change the design, and the proof that should fail if the implementation is
+wrong.
 
-## Alignment
+## Loop
 
-For product-shaped, risky, or architecture-changing work, the main thread reads
-the relevant code, docs, ADRs, and tests before implementation. Use helpers only
-for noisy search, long logs, or independent review until the decision is clear.
-
-Return:
-
-- 2-3 viable approaches when the design is not obvious;
-- one recommendation and why it fits the repo;
-- up to 5 questions that would change the design, risk, or proof;
-- the proof that should fail if the implementation is wrong.
-
-Write an ADR only when the decision should constrain future work.
+1. Read `AGENTS.md`, then this file.
+2. Check routing, tools, queue, knowledge, and ADRs only when relevant.
+3. Define success and the narrowest proof.
+4. Make the smallest coherent change.
+5. Run the proof ladder as high as the risk requires.
+6. Inspect the diff.
+7. Use the adversarial done gate for nontrivial, long, or `/goal` work.
+8. Record changed files, proof, risk, and next action.
+9. Commit and push verified repo-visible work unless the user asked for
+   local-only work.
 
 ## Artifacts
 
 | Artifact | Use When | Keep It |
 | --- | --- | --- |
-| Thread | One-off task context. | In the conversation. |
-| Execution packet | Long, multi-step, or `/goal` work. | Current, compact, discardable. |
+| Thread | One-off context. | Conversation. |
+| Execution packet | Long, multi-step, or `/goal` work. | Plan, scope, proof, risks, handoff. |
 | ADR | Durable architecture/product invariant. | Short, numbered, referenced. |
-| Queue | Paused or handed-off work. | Small baton, not backlog. |
-| Knowledge | Stable facts and preferences. | Dated when likely to expire. |
-| Tools | Exact commands, auth names, ports, limits. | Verifiable and secret-free. |
-
-Execution packets carry plan, scope, proof ladder, dogfood path, risks, and
-handoff. ADRs carry decisions that should survive the branch.
-
-## Loop
-
-1. Read `AGENTS.md`, then this file.
-2. Check queue, knowledge, tools, routing, and ADRs only when relevant.
-3. Define success criteria and the narrowest proof.
-4. Make the smallest coherent change.
-5. Run the proof ladder as high as the risk requires.
-6. Inspect the diff.
-7. Use the adversarial done gate for nontrivial, long, or `/goal` work.
-8. Record status and next action.
-9. Commit and push verified repo-visible work unless the user asked for
-   local-only work.
+| Queue | Paused or handed-off work. | Baton, not backlog. |
+| Knowledge | Stable fact or preference. | Dated when likely to expire. |
+| Tools | Command, auth name, port, limit, fallback. | Verifiable and secret-free. |
 
 ## Proof Ladder
 
@@ -82,33 +66,21 @@ handoff. ADRs carry decisions that should survive the branch.
 5. Browser, screenshot, computer-use, or end-to-end dogfood when user
    experience is the claim.
 
-Record what ran, what passed, and what was skipped.
+Say what ran, what passed, and what was skipped.
 
-## Parallel Work
+## Delegation
 
-- Keep architecture-forming reads and decisions in the main thread until the
-  approach is settled.
-- Split only when tasks have clear ownership or read-only scope.
-- Use separate threads or subagents for noisy exploration, logs, broad search,
-  long tests, and independent review.
-- Use worktrees or another isolated workspace for parallel write-heavy work.
-- Finished workers report changed files, verification, residual risk, and ship
-  status.
+- Main thread owns requirements, decisions, and proof.
+- Split only when ownership is clear or scope is read-only.
+- Use helpers for noisy exploration, logs, broad search, long tests, and fresh
+  review.
+- Parallel write-heavy work needs an isolated worktree or workspace.
+- Workers return files touched, evidence, risk, and ship status.
 
-## Adversarial Done Gate
+## Done Gate
 
 Use this for `/goal` runs, long plans, multi-step edits, security-sensitive
-changes, or any task where "done" depends on more than one obvious check.
-
-Before calling the work done:
-
-1. Restate success criteria and evidence.
-2. Ask a fresh reviewer, subagent, or separate thread to attack the done claim.
-3. Have the reviewer return `pass`, `gap`, or `blocker`.
-4. Fix material gaps or record the blocker.
-5. Include the review result in the finish packet.
-
-Prompt shape:
+changes, or any task where done depends on more than one obvious check.
 
 ```text
 Adversarial review:
@@ -120,15 +92,11 @@ Look for: missed requirements, unverified assumptions, regressions, overbuilt ch
 Return: pass, gap, or blocker; include file/line or command evidence when possible.
 ```
 
-## Publish
+Use a fresh reviewer or separate thread when available and authorized; otherwise
+self-review against the same fields. Fix material gaps or record the blocker
+before claiming done.
 
-- Start with `git status --short --branch`.
-- Preserve user and other-agent changes.
-- Commit and push only verified repo-visible work.
-- Keep private, scratch, partial, failing, and unverified work out of commits.
-- Destructive git operations require explicit user instruction.
+## Finish
 
-## Finish Packet
-
-Report changed files, proof, residual risk, and commit/push/PR or local-only
+Report changed files, proof, residual risk, and local-only, commit, push, or PR
 state.

@@ -13,19 +13,19 @@ Package only the durable part of repeated work. "Skip" is a valid outcome.
 
 ## Test
 
-Create or extend an asset only when the workflow:
+Create or extend an asset only when the workflow has:
 
-- repeated or is clearly about to repeat;
-- has stable inputs, output, owner, and stopping point;
-- improves speed, quality, consistency, or reliability;
-- is easier to review than the repeated prompt;
-- is not already covered.
+- repetition or high-confidence recurrence;
+- stable input, output, owner, and stop point;
+- speed, quality, consistency, or reliability gain;
+- easier review than the repeated prompt;
+- no existing asset that already covers it.
 
 Do not package one-off, ambiguous, sensitive, or poorly evidenced work.
 
 ## Evidence
 
-Use source systems, not vibes:
+Use source systems:
 
 1. repo docs, recent sessions, task summaries, and shared context;
 2. Codex Memories and rollout summaries;
@@ -39,8 +39,8 @@ Confirm important details before writing durable instructions.
 | Form | Use For |
 | --- | --- |
 | ADR | Architecture decision, invariant, data boundary, service ownership. |
-| Execution packet | One long task that needs stable plan, proof, and handoff. |
-| Knowledge note | Stable fact, preference, caveat, or retrospective. |
+| Execution packet | One long task needing plan, proof, and handoff. |
+| Knowledge note | Stable fact, preference, caveat, retrospective. |
 | Tool entry | Exact command, auth source name, port, limit, or fallback. |
 | Script/check | Deterministic command-shaped work. |
 | Skill | Repeatable method across repos with proof and stopping condition. |
@@ -48,9 +48,8 @@ Confirm important details before writing durable instructions.
 | Automation | Stable scheduled work with reviewable output. |
 | Skip | Evidence is thin or the prompt is already enough. |
 
-Prefer extension over duplication. Prefer repo docs or scripts over skills when
-the workflow belongs to one project. Prefer automation only after the manual
-loop is reliable.
+Prefer extension over duplication, repo docs/scripts over skills for one-repo
+work, and automation only after the manual loop is reliable.
 
 ## Shortlist
 
@@ -67,8 +66,8 @@ Reason:
 ## Creation Rules
 
 Name inputs, procedure, output, stopping condition, proof, source systems, and
-privacy limits. Dry-run manually when possible. If the new asset does not reduce
-steps, mistakes, or context load, shrink it or skip it.
+privacy limits. If the asset does not reduce steps, mistakes, or context load,
+shrink it or skip it.
 
 ## Finish
 
