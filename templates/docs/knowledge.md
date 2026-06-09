@@ -14,6 +14,8 @@ read_when:
 ## Project Facts
 
 - Capture stable project facts, decisions, and summaries worth reusing.
+- Move architecture decisions, invariants, and service-boundary rules to
+  docs/adr/ when future sessions must preserve them.
 
 ## Retrieval
 

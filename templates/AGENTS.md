@@ -11,6 +11,7 @@ This repo is worked by Codex app sessions.
 - docs/project-routing.md
 - docs/tools.md
 - docs/workflow-packaging-audit.md
+- docs/adr/ when architecture decisions matter.
 - docs/queue.md
 - docs/knowledge.md
 
@@ -19,6 +20,7 @@ This repo is worked by Codex app sessions.
 - Follow the user's latest request.
 - Keep current task state in the active thread, shared context, or docs/queue.md.
 - Keep durable facts in docs/knowledge.md.
+- Keep durable architecture decisions and invariants in docs/adr/.
 - Keep repo identity, publish routing, and tool catalogs in docs/project-routing.md
   or docs/tools.md.
 - Keep each Markdown file focused on one job; prefer links and short maps over

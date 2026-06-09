@@ -75,6 +75,12 @@ Adapted patterns:
 - Capture tool gotchas where they are read, not in scattered conversation
   history.
 - Reduce cognitive load by making the next action and the right file obvious.
+- Keep architecture-forming work in one main context until the decision, proof,
+  and user alignment are clear.
+- Capture durable architectural decisions as short ADRs with invariants and file
+  references.
+- Dogfood user-facing work through the closest real runtime or UI loop before
+  handoff when feasible.
 - For long goal runs, use a fresh adversarial review gate before marking work
   done so missed proof, regressions, and overbuilt paths surface early.
 

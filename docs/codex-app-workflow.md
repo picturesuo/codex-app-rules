@@ -16,6 +16,7 @@ The common files should do only durable work:
 - tell Codex how to behave;
 - name the working loop;
 - preserve stable project knowledge;
+- preserve durable architectural decisions and invariants;
 - make GitHub, publish, related-project, and local-tool routing explicit without
   storing secrets;
 - keep the next task visible;
@@ -31,6 +32,7 @@ The common files should do only durable work:
 | `docs/project-routing.md` | Repo, GitHub, release, and related-project routing. | Codex has to ask the same routing question twice. |
 | `docs/tools.md` | Tool commands, auth source names, limits, and fallbacks. | A local tool has a stable command or gotcha. |
 | `docs/workflow-packaging-audit.md` | Decision test for skills, subagents, automations, docs, and scripts. | Repeated work needs packaging discipline. |
+| `docs/adr/0000-template.md` | Compact template for architectural decisions and invariants. | A decision must guide future sessions or code paths. |
 | `docs/queue.md` | Current task baton and small backlog. | Work is paused, resumed, blocked, or handed off. |
 | `docs/knowledge.md` | Durable facts and user preferences. | A fact will help future sessions. |
 | `.codex/config.toml` | Repo-scoped Codex defaults. | The repo needs a stable Codex default. |
@@ -42,9 +44,10 @@ target repo after install.
 ## Read And Write Paths
 
 - Read path: `AGENTS.md` -> workflow -> routing/tools -> queue/knowledge ->
-  source code.
+  ADRs when architecture matters -> source code.
 - Write path: code and tests first, then update queue, knowledge, routing, or
-  tools only when the work produced durable context.
+  tools only when the work produced durable context. Add an ADR when the work
+  creates or depends on a decision future sessions must preserve.
 - Keep the shared package small. If a detail is true for one repo, install the
   templates there and write it there.
 
@@ -54,13 +57,20 @@ The templates encode a few patterns that kept recurring across strong public
 agent workflows:
 
 - brief like a GitHub issue: goal, context, constraints, and done condition;
+- align before risky work by having the main thread read relevant code and docs,
+  present a few options, ask only questions that change the design, and keep the
+  chosen reasoning in context;
 - explore and plan before large edits, but skip ceremony for obvious changes;
 - keep context lean by sending noisy search, logs, and review into separate
   threads or subagents;
+- preserve durable architecture choices in short ADRs with invariants,
+  consequences, and file references;
 - add an adversarial done gate for long `/goal` runs so a fresh reviewer
   challenges completion before plan items are marked done;
 - prefer measurable loops: run proof, inspect output, keep the change only when
   it improves the target without needless complexity;
+- dogfood user-facing work through the closest real runtime or UI loop before
+  handoff when feasible;
 - use tools deliberately: repo scripts first, CLIs before broad integrations,
   MCP/browser/computer-use only when they close a real feedback loop;
 - write retrospectives back into docs, skills, scripts, or automations only
@@ -75,10 +85,12 @@ agent workflows:
    publish work.
 5. Check `docs/tools.md` before using repo-specific or user-local tools.
 6. Check `docs/queue.md` and `docs/knowledge.md`.
-7. Define success criteria.
-8. Make the smallest coherent change.
-9. Verify.
-10. Commit and push finished repo-visible work unless the user asks for
+7. Check `docs/adr/` when architecture, invariants, or service boundaries
+   matter.
+8. Define success criteria.
+9. Make the smallest coherent change.
+10. Verify.
+11. Commit and push finished repo-visible work unless the user asks for
    local-only work.
 
 ## Parallel Work

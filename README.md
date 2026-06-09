@@ -18,6 +18,7 @@ The package gives every checkout the same durable surface:
 | `docs/project-routing.md` | Repo identity, GitHub, publish, and related-project routing. |
 | `docs/tools.md` | Local tool catalog, auth source names, permissions, and known limits. |
 | `docs/workflow-packaging-audit.md` | When repeated work deserves a skill, subagent, automation, doc, or script. |
+| `docs/adr/0000-template.md` | Compact architectural decision record template for durable decisions. |
 | `docs/queue.md` | The next task and clean handoff state. |
 | `docs/knowledge.md` | Durable project facts and user preferences. |
 | `.codex/config.toml` | Repo-scoped Codex defaults. |
@@ -63,10 +64,17 @@ agent may quote, commit, or publish.
 ## Workflow Biases
 
 - Brief tasks like GitHub issues: goal, context, constraints, done condition.
+- For risky or architecture-shaped work, align in one main thread before
+  implementation: research, present options, ask the few questions that change
+  the design, and keep the chosen reasoning in context.
+- Capture durable architectural decisions as short ADRs with invariants and file
+  references, not scattered chat memory.
 - Keep always-on instructions short; move occasional workflows into skills.
 - Use separate threads or subagents for noisy exploration, logs, long tests, and
   independent review.
 - Use an adversarial done gate before marking meaningful `/goal` work complete.
+- Dogfood user-facing work with the closest real runtime or UI loop before
+  handoff when feasible.
 - Prefer repo scripts and CLIs before heavier integrations; add MCP or browser
   tools when they close a real feedback loop.
 - Use automations only after the manual workflow is stable and the result is
