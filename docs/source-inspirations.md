@@ -65,6 +65,7 @@ Sources:
 - https://x.com/alex_prompter/status/2039853870810108384
 - https://x.com/karpathy/status/1872038630405054853
 - https://x.com/blader/status/2058303538674217319
+- https://docs.arc42.org/tips/9-5/
 
 Adapted patterns:
 
@@ -79,6 +80,8 @@ Adapted patterns:
   and user alignment are clear.
 - Capture durable architectural decisions as short ADRs with invariants and file
   references.
+- Use execution packets or plan templates for long multi-step runs so compaction
+  and handoff preserve the target, proof, and risks.
 - Dogfood user-facing work through the closest real runtime or UI loop before
   handoff when feasible.
 - For long goal runs, use a fresh adversarial review gate before marking work
@@ -89,6 +92,8 @@ Adapted patterns:
 Sources:
 
 - https://developers.openai.com/codex/learn/best-practices
+- https://developers.openai.com/cookbook/articles/codex_exec_plans
+- https://developers.openai.com/codex/concepts/subagents
 - https://developers.openai.com/codex/memories
 - https://developers.openai.com/codex/memories/chronicle
 - https://developers.openai.com/codex/guides/agents-md
@@ -106,7 +111,11 @@ Adapted patterns:
 - Memories and Chronicle are discovery aids; confirm important facts in source
   systems.
 - Strong prompts name goal, context, constraints, and done condition.
+- Execution-plan templates help long multi-step work survive compaction,
+  restart, review, and handoff with observable acceptance.
 - Codex app work should be organized as durable threads with reviewable output.
+- Subagents should keep noisy exploration, tests, and review out of the main
+  requirements and decisions context.
 - App skills package workflows that are hard to define consistently.
 - Automations combine stable instructions with cadence and a review queue.
 - Keep one thread per coherent task to prevent bloated context.
@@ -168,4 +177,5 @@ Adapted patterns:
 
 - Parallel agents work best for research, archaeology, small maintenance, and
   clearly specified implementation.
+- Parallel write-heavy work needs isolated workspaces and explicit ownership.
 - Save useful findings so later sessions start with better local knowledge.

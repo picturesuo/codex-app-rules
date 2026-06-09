@@ -41,6 +41,24 @@ After alignment, turn any durable architecture decision into a compact ADR in
 docs/adr/, especially when future sessions must preserve an invariant or use
 specific service boundaries.
 
+## Execution Packet
+
+For long-running, multi-step, or /goal work, create a compact execution packet
+before coding. Keep it in the thread when the work is short-lived, or use
+docs/execution-packet.md when the repo needs a reusable shape.
+
+Include only what future context needs:
+
+- goal, non-goals, and assumptions;
+- chosen approach plus linked ADRs or decisions;
+- files or areas expected to change;
+- staged plan with status;
+- proof ladder, including dogfood path when user-facing behavior changes;
+- risks, rollback notes, and next decision.
+
+Update the packet when the plan materially changes. Do not let it become a
+second issue tracker or a design doc.
+
 ## Mode Choice
 
 - Discuss: use when the request is fuzzy, product-shaped, risky, or strategic.
@@ -58,15 +76,16 @@ specific service boundaries.
 2. Check docs/queue.md for current work.
 3. Check docs/knowledge.md for durable facts.
 4. Check docs/adr/ when architecture, invariants, or service boundaries matter.
-5. Check docs/project-routing.md before cross-repo, GitHub, release, or publish
+5. Check or create an execution packet for long, multi-step, or /goal work.
+6. Check docs/project-routing.md before cross-repo, GitHub, release, or publish
    work.
-6. Check docs/tools.md before using repo-specific or user-local tools.
-7. Define success criteria before editing.
-8. Make the smallest coherent change.
-9. Run the narrowest useful proof.
-10. Run the adversarial done gate for nontrivial or /goal work.
-11. Record status, changed files, verification, and next action.
-12. Commit and push finished repo-visible work unless the user asked for
+7. Check docs/tools.md before using repo-specific or user-local tools.
+8. Define success criteria before editing.
+9. Make the smallest coherent change.
+10. Run the narrowest useful proof.
+11. Run the adversarial done gate for nontrivial or /goal work.
+12. Record status, changed files, verification, and next action.
+13. Commit and push finished repo-visible work unless the user asked for
    local-only work.
 
 ## Context
@@ -74,6 +93,7 @@ specific service boundaries.
 - Current task state belongs in the active thread, shared context, or queue.
 - Durable facts belong in docs/knowledge.md.
 - Durable architecture decisions and invariants belong in docs/adr/.
+- Long-run execution shape belongs in the active thread or an execution packet.
 - Project, GitHub, release, and related-repo routing belong in
   docs/project-routing.md.
 - Tool commands, auth source names, permissions, and known limits belong in
@@ -98,9 +118,12 @@ files.
 - Split only when tasks have clear file ownership or read-only scope.
 - Use one Codex thread per task, feature slice, or proof.
 - Do not let two sessions edit the same file unless one session sequences the work.
+- Keep architecture-forming reads and decisions in the main thread until the
+  approach is settled.
 - Finished sessions report changed files, verification, residual risk, and ship status.
 - Use separate threads or subagents for noisy exploration, logs, broad search,
   long tests, and independent review so the main thread stays focused.
+- Use worktrees or another isolated workspace for parallel write-heavy work.
 
 ## Review Loop
 
@@ -112,6 +135,18 @@ files.
 - For bugs, prefer a reproducer or regression test before the fix.
 - For high-risk changes, use a fresh review context so the reviewer is not
   anchored to the implementation path.
+
+Proof ladder:
+
+1. Static checks, types, lint, or formatting.
+2. Focused unit or regression tests.
+3. Integration, build, migration, or API checks.
+4. Runtime smoke test through the changed route, CLI, job, or service.
+5. Browser, screenshot, computer-use, or end-to-end dogfood when the user
+   experience is the claim.
+
+Choose the highest rung needed for the risk. Record what actually ran, what
+passed, and what was skipped.
 
 ## Adversarial Done Gate
 

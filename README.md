@@ -6,7 +6,8 @@ The package gives every checkout the same durable surface:
 
 - a behavior contract Codex reads before acting;
 - a working loop that turns vague requests into verifiable outcomes;
-- safe places to store routing, tools, task state, and durable knowledge;
+- safe places to store routing, tools, task state, durable decisions, and
+  durable knowledge;
 - a publish path that commits and pushes only verified repo-visible work.
 
 ## File Map
@@ -15,6 +16,7 @@ The package gives every checkout the same durable surface:
 | --- | --- |
 | `AGENTS.md` | Hard rules, coding posture, and publish policy. |
 | `docs/agent-workflow.md` | The enter, edit, verify, and ship loop. |
+| `docs/execution-packet.md` | Lightweight packet for long, multi-step, or `/goal` work. |
 | `docs/project-routing.md` | Repo identity, GitHub, publish, and related-project routing. |
 | `docs/tools.md` | Local tool catalog, auth source names, permissions, and known limits. |
 | `docs/workflow-packaging-audit.md` | When repeated work deserves a skill, subagent, automation, doc, or script. |
@@ -69,9 +71,12 @@ agent may quote, commit, or publish.
   the design, and keep the chosen reasoning in context.
 - Capture durable architectural decisions as short ADRs with invariants and file
   references, not scattered chat memory.
+- For long runs, create an execution packet before coding so compaction,
+  review, and resumed work share the same target.
 - Keep always-on instructions short; move occasional workflows into skills.
 - Use separate threads or subagents for noisy exploration, logs, long tests, and
-  independent review.
+  independent review. Parallel work should earn its coordination cost and stay
+  isolated by file ownership or worktree.
 - Use an adversarial done gate before marking meaningful `/goal` work complete.
 - Dogfood user-facing work with the closest real runtime or UI loop before
   handoff when feasible.
@@ -84,8 +89,11 @@ agent may quote, commit, or publish.
 ## Sources
 
 - OpenAI Codex best practices: https://developers.openai.com/codex/learn/best-practices
+- OpenAI Codex execution plans: https://developers.openai.com/cookbook/articles/codex_exec_plans
+- OpenAI Codex subagent concepts: https://developers.openai.com/codex/concepts/subagents
 - OpenAI Codex Memories: https://developers.openai.com/codex/memories
 - OpenAI Codex Chronicle: https://developers.openai.com/codex/memories/chronicle
+- arc42 on Nygard ADRs: https://docs.arc42.org/tips/9-5/
 - Karpathy `autoresearch`: https://github.com/karpathy/autoresearch
 - Karpathy `program.md`: https://github.com/karpathy/autoresearch/blob/master/program.md
 - Karpathy-inspired `CLAUDE.md`: https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md

@@ -39,6 +39,9 @@ handled by a normal prompt.
 - Skill: reusable method or tool workflow.
 - Subagent: bounded specialist investigation or review.
 - Automation: scheduled check, report, reminder, or monitor.
+- ADR: durable architectural decision, invariant, or service boundary.
+- Execution packet: long-running one-off plan that must survive compaction,
+  review, or handoff.
 - Tool catalog entry: exact local command, auth source name, permission, limit,
   or fallback.
 - Routing note: stable repo identity, GitHub, release, or related-project rule.
@@ -53,16 +56,23 @@ output is easy to review.
 
 ## Decision Order
 
-1. Add a note to `docs/knowledge.md`, `docs/project-routing.md`, or
+1. Add an ADR when the repeated risk is forgetting an architectural decision or
+   invariant.
+2. Add an execution packet when a single long task needs a stable plan, proof,
+   and handoff target.
+3. Add a note to `docs/knowledge.md`, `docs/project-routing.md`, or
    `docs/tools.md` when the fix is just context.
-2. Add or improve a repo script when the work is command-shaped.
-3. Add or improve a skill when the work is a repeatable method across repos.
-4. Add an automation only when cadence and review output are stable.
-5. Skip when evidence is thin.
+4. Add or improve a repo script when the work is command-shaped.
+5. Add or improve a skill when the work is a repeatable method across repos.
+6. Add an automation only when cadence and review output are stable.
+7. Skip when evidence is thin.
 
 ## Pattern Fit
 
 - Context note: stable fact, preference, caveat, or retrospective.
+- ADR: architecture choice, invariant, dependency rule, data boundary, or
+  service boundary future sessions must preserve.
+- Execution packet: scoped long-run task plan with proof and dogfood path.
 - Tool entry: exact command, auth source, permission, limit, or fallback.
 - Skill: repeated method with inputs, outputs, stopping condition, and proof.
 - Subagent/thread: noisy investigation, independent review, broad search, or

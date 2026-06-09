@@ -8,6 +8,7 @@ This repo is worked by Codex app sessions.
 
 - README.md when present.
 - docs/agent-workflow.md
+- docs/execution-packet.md for long, multi-step, or /goal work.
 - docs/project-routing.md
 - docs/tools.md
 - docs/workflow-packaging-audit.md
@@ -21,6 +22,8 @@ This repo is worked by Codex app sessions.
 - Keep current task state in the active thread, shared context, or docs/queue.md.
 - Keep durable facts in docs/knowledge.md.
 - Keep durable architecture decisions and invariants in docs/adr/.
+- Keep long-run plan, proof, dogfood path, risks, and handoff state in the
+  active thread or docs/execution-packet.md.
 - Keep repo identity, publish routing, and tool catalogs in docs/project-routing.md
   or docs/tools.md.
 - Keep each Markdown file focused on one job; prefer links and short maps over

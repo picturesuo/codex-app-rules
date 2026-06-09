@@ -17,6 +17,8 @@ The common files should do only durable work:
 - name the working loop;
 - preserve stable project knowledge;
 - preserve durable architectural decisions and invariants;
+- preserve long-run execution shape when a task needs to survive compaction,
+  review, or handoff;
 - make GitHub, publish, related-project, and local-tool routing explicit without
   storing secrets;
 - keep the next task visible;
@@ -29,6 +31,7 @@ The common files should do only durable work:
 | --- | --- | --- |
 | `AGENTS.md` | Behavior contract and hard rules. | A rule should apply across many sessions. |
 | `docs/agent-workflow.md` | Read, edit, verify, and publish loop. | The working loop changes. |
+| `docs/execution-packet.md` | Lightweight packet for long, multi-step, or `/goal` work. | A long-run task needs a reusable packet shape. |
 | `docs/project-routing.md` | Repo, GitHub, release, and related-project routing. | Codex has to ask the same routing question twice. |
 | `docs/tools.md` | Tool commands, auth source names, limits, and fallbacks. | A local tool has a stable command or gotcha. |
 | `docs/workflow-packaging-audit.md` | Decision test for skills, subagents, automations, docs, and scripts. | Repeated work needs packaging discipline. |
@@ -47,7 +50,9 @@ target repo after install.
   ADRs when architecture matters -> source code.
 - Write path: code and tests first, then update queue, knowledge, routing, or
   tools only when the work produced durable context. Add an ADR when the work
-  creates or depends on a decision future sessions must preserve.
+  creates or depends on a decision future sessions must preserve. Use an
+  execution packet for long work that needs a stable target through compaction
+  or handoff.
 - Keep the shared package small. If a detail is true for one repo, install the
   templates there and write it there.
 
@@ -65,12 +70,16 @@ agent workflows:
   threads or subagents;
 - preserve durable architecture choices in short ADRs with invariants,
   consequences, and file references;
+- use execution packets for long goal runs so plan, proof, dogfood path, and
+  risks stay visible across compaction or handoff;
 - add an adversarial done gate for long `/goal` runs so a fresh reviewer
   challenges completion before plan items are marked done;
 - prefer measurable loops: run proof, inspect output, keep the change only when
   it improves the target without needless complexity;
 - dogfood user-facing work through the closest real runtime or UI loop before
   handoff when feasible;
+- choose proof from a ladder: static checks, focused tests, integration/build,
+  runtime smoke, then browser/computer-use or end-to-end dogfood;
 - use tools deliberately: repo scripts first, CLIs before broad integrations,
   MCP/browser/computer-use only when they close a real feedback loop;
 - write retrospectives back into docs, skills, scripts, or automations only
@@ -87,17 +96,21 @@ agent workflows:
 6. Check `docs/queue.md` and `docs/knowledge.md`.
 7. Check `docs/adr/` when architecture, invariants, or service boundaries
    matter.
-8. Define success criteria.
-9. Make the smallest coherent change.
-10. Verify.
-11. Commit and push finished repo-visible work unless the user asks for
+8. Check or create an execution packet for long, multi-step, or `/goal` work.
+9. Define success criteria.
+10. Make the smallest coherent change.
+11. Verify.
+12. Commit and push finished repo-visible work unless the user asks for
    local-only work.
 
 ## Parallel Work
 
 - Use one Codex thread per coherent unit of work.
 - Split only when ownership is clear.
-- Use subagents for bounded research, tests, triage, or archaeology.
+- Keep architecture-forming context in the main thread until decisions settle.
+- Use subagents for bounded research, tests, triage, archaeology, or fresh
+  review.
+- Use isolated worktrees or equivalent workspaces for parallel write-heavy work.
 - Report changed files, verification, residual risk, and ship status before
   handoff.
 

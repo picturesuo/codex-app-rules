@@ -59,6 +59,11 @@ reduces repeated mistakes, or gives Codex feedback it cannot get from files.
   account here when they are stable.
 - For frontend work, proof should include what Codex actually saw, not only that
   the code compiled.
+- Prefer the in-app browser for unauthenticated local web routes. Use computer
+  use only when the task depends on a graphical app or signed-in/user-profile
+  state that lower-context tools cannot inspect.
+- Keep dogfood tasks scoped to one app, route, or workflow at a time, and record
+  screenshots, logs, or exact UI state when they are the proof.
 
 ## Tool Entry Template
 
