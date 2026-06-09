@@ -9,101 +9,56 @@ read_when:
 
 ## Goal
 
-Find repeated manual work worth packaging, then create only the smallest
-high-confidence missing asset. "Skip" is a valid outcome.
+Package only the durable part of repeated work. "Skip" is a valid outcome.
 
-## Routine Design Loop
+## Test
 
-Use this loop when a task exposes repeated friction or the user asks for a
-loop, routine, skill, subagent, or automation. This loop creates other loops:
+Create or extend an asset only when the workflow:
 
-1. Notice the trigger, repeated work, inputs, output, owner, and stopping point.
-2. Test whether the work is stable, recurring, useful, and not already covered.
-3. Choose the smallest useful form, preferring extension over duplication.
-4. Dry-run the routine manually with real evidence and a proof that can fail.
-5. Package only the durable part, including privacy limits and verification.
-6. Review whether it reduced steps, mistakes, or context load; otherwise skip
-   or shrink it.
-
-Do not package a loop just because it sounds clever. Package it when the manual
-version has enough evidence and the resulting asset is easier to review than
-the repeated prompt.
-
-## Evidence Order
-
-1. Recent Codex sessions, task summaries, shared context, and repo docs.
-2. Codex Memories and rollout summaries.
-3. Chronicle, if enabled, for discovery only.
-4. Existing skills, subagents, automations, docs, and scripts.
-
-Confirm important details in the source system before acting. Memories,
-Chronicle, screenshots, and summaries are leads, not source of truth.
-
-## Candidate Test
-
-Package work only when it:
-
-- happened at least twice, or is clearly likely to recur and costly to repeat;
-- has stable inputs, a repeatable procedure, and a clear stopping condition;
+- repeated or is clearly about to repeat;
+- has stable inputs, output, owner, and stopping point;
 - improves speed, quality, consistency, or reliability;
-- is not already covered well enough.
+- is easier to review than the repeated prompt;
+- is not already covered.
 
-Skip work that is one-off, ambiguous, sensitive, poorly evidenced, or better
-handled by a normal prompt.
+Do not package one-off, ambiguous, sensitive, or poorly evidenced work.
 
-## Smallest Useful Form
+## Evidence
 
-- Skill: reusable method or tool workflow.
-- Subagent: bounded specialist investigation or review.
-- Automation: scheduled check, report, reminder, or monitor.
-- ADR: durable architectural decision, invariant, or service boundary.
-- Execution packet: long-running one-off plan that must survive compaction,
-  review, or handoff.
-- Tool catalog entry: exact local command, auth source name, permission, limit,
-  or fallback.
-- Routing note: stable repo identity, GitHub, release, or related-project rule.
-- Extend existing: improve a current skill, doc, script, automation, or rule.
-- Skip: not worth packaging yet.
+Use source systems, not vibes:
 
-Prefer extension over duplication. Prefer a repo doc or script over a skill when
-the workflow belongs only to one repo. Prefer `docs/tools.md` when the repeated
-mistake is "which command/tool/account?" rather than "how do I run this
-workflow?" Prefer automation only after the prompt shape has worked and the
-output is easy to review.
+1. repo docs, recent sessions, task summaries, and shared context;
+2. Codex Memories and rollout summaries;
+3. Chronicle for discovery only;
+4. existing skills, subagents, automations, docs, and scripts.
 
-## Decision Order
+Confirm important details before writing durable instructions.
 
-1. Add an ADR when the repeated risk is forgetting an architectural decision or
-   invariant.
-2. Add an execution packet when a single long task needs a stable plan, proof,
-   and handoff target.
-3. Add a note to `docs/knowledge.md`, `docs/project-routing.md`, or
-   `docs/tools.md` when the fix is just context.
-4. Add or improve a repo script when the work is command-shaped.
-5. Add or improve a skill when the work is a repeatable method across repos.
-6. Add an automation only when cadence and review output are stable.
-7. Skip when evidence is thin.
+## Smallest Form
 
-## Pattern Fit
+| Form | Use For |
+| --- | --- |
+| ADR | Architecture decision, invariant, data boundary, service ownership. |
+| Execution packet | One long task that needs stable plan, proof, and handoff. |
+| Knowledge note | Stable fact, preference, caveat, or retrospective. |
+| Tool entry | Exact command, auth source name, port, limit, or fallback. |
+| Script/check | Deterministic command-shaped work. |
+| Skill | Repeatable method across repos with proof and stopping condition. |
+| Subagent/thread | Noisy exploration, long logs, tests, or fresh review. |
+| Automation | Stable scheduled work with reviewable output. |
+| Skip | Evidence is thin or the prompt is already enough. |
 
-- Context note: stable fact, preference, caveat, or retrospective.
-- ADR: architecture choice, invariant, dependency rule, data boundary, or
-  service boundary future sessions must preserve.
-- Execution packet: scoped long-run task plan with proof and dogfood path.
-- Tool entry: exact command, auth source, permission, limit, or fallback.
-- Skill: repeated method with inputs, outputs, stopping condition, and proof.
-- Subagent/thread: noisy investigation, independent review, broad search, or
-  long-running proof that should not flood the main context.
-- Automation: stable schedule plus a result worth reviewing later.
-- Guardrail script/check: deterministic rule that should run every time.
+Prefer extension over duplication. Prefer repo docs or scripts over skills when
+the workflow belongs to one project. Prefer automation only after the manual
+loop is reliable.
 
 ## Shortlist
 
 ```text
 Workflow:
-Evidence and dates:
+Evidence:
 Frequency/confidence:
-Recommended form:
+Smallest form:
 Already covered by:
 Decision:
 Reason:
@@ -111,18 +66,9 @@ Reason:
 
 ## Creation Rules
 
-Create only high-confidence missing items. Name:
-
-- inputs;
-- procedure or delegation boundary;
-- output;
-- stopping condition;
-- verification;
-- source systems;
-- privacy limits.
-
-Do not create speculative, overlapping, or broad assets. If evidence is missing,
-say what evidence is needed.
+Name inputs, procedure, output, stopping condition, proof, source systems, and
+privacy limits. Dry-run manually when possible. If the new asset does not reduce
+steps, mistakes, or context load, shrink it or skip it.
 
 ## Finish
 

@@ -68,29 +68,15 @@ agent may quote, commit, or publish.
 
 - Brief tasks like GitHub issues: goal, context, constraints, done condition.
 - For risky or architecture-shaped work, align in one main thread before
-  implementation: research, present options, ask the few questions that change
-  the design, and keep the chosen reasoning in context.
-- Capture durable architectural decisions as short ADRs with invariants and file
-  references, not scattered chat memory.
-- For long runs, create an execution packet before coding so compaction,
-  review, and resumed work share the same target.
-- For startup work, separate fast shipping loops from durable product and
-  architecture decisions; optimize for validated learning without losing
-  technical coherence.
-- Keep always-on instructions short; move occasional workflows into skills.
-- Use separate threads or subagents for noisy exploration, logs, long tests, and
-  independent review. Parallel work should earn its coordination cost and stay
-  isolated by file ownership or worktree.
-- Use an adversarial done gate before marking meaningful `/goal` work complete.
-- Dogfood user-facing work with the closest real runtime or UI loop before
-  handoff when feasible.
-- Prefer repo scripts and CLIs before heavier integrations; add MCP or browser
-  tools when they close a real feedback loop.
-- Run the `docs/workflow-packaging-audit.md` routine-design loop before turning
-  repeated work into a skill, subagent, automation, doc, or script.
-- Use automations only after the manual workflow is stable and the result is
-  easy to review.
-- Feed repeated mistakes back into the smallest durable file that prevents them.
+  implementation: options, recommendation, hard questions, proof.
+- Use execution packets for long runs, ADRs for durable decisions, and proof
+  loops for measured learning.
+- For startup work, combine fast customer-visible slices with durable product
+  and architecture invariants.
+- Keep always-on instructions short; package repeated work only after the manual
+  loop is stable.
+- Use subagents, browser, MCP, computer use, and automations only when they
+  close a real feedback loop or keep noisy work out of the main context.
 
 ## Sources
 

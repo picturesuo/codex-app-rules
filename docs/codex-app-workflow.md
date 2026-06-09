@@ -11,7 +11,8 @@ read_when:
 
 Make any repo easy for Codex to enter, understand, verify, and ship from.
 
-The common files should do only durable work:
+The package should feel like a small agent program, not a binder. Common files
+do only durable work:
 
 - tell Codex how to behave;
 - name the working loop;
@@ -62,31 +63,12 @@ target repo after install.
 The templates encode a few patterns that kept recurring across strong public
 agent workflows:
 
-- brief like a GitHub issue: goal, context, constraints, and done condition;
-- align before risky work by having the main thread read relevant code and docs,
-  present a few options, ask only questions that change the design, and keep the
-  chosen reasoning in context;
-- explore and plan before large edits, but skip ceremony for obvious changes;
-- keep context lean by sending noisy search, logs, and review into separate
-  threads or subagents;
-- preserve durable architecture choices in short ADRs with invariants,
-  consequences, and file references;
-- use execution packets for long goal runs so plan, proof, dogfood path, and
-  risks stay visible across compaction or handoff;
-- add an adversarial done gate for long `/goal` runs so a fresh reviewer
-  challenges completion before plan items are marked done;
-- prefer measurable loops: run proof, inspect output, keep the change only when
-  it improves the target without needless complexity;
-- dogfood user-facing work through the closest real runtime or UI loop before
-  handoff when feasible;
-- choose proof from a ladder: static checks, focused tests, integration/build,
-  runtime smoke, then browser/computer-use or end-to-end dogfood;
-- use tools deliberately: repo scripts first, CLIs before broad integrations,
-  MCP/browser/computer-use only when they close a real feedback loop;
-- run the `docs/workflow-packaging-audit.md` routine-design loop before turning
-  repeated work into a skill, subagent, automation, doc, or script;
-- write retrospectives back into docs, skills, scripts, or automations only
-  after repeated friction.
+- prompt shape: goal, context, constraints, done condition;
+- alignment: options, recommendation, hard questions, proof;
+- artifacts: execution packet for active work, ADR for durable decisions;
+- measurement: proof ladder, dogfood, keep/discard loops;
+- context control: main thread for decisions, helpers for noise and review;
+- packaging: repeated friction becomes the smallest durable guardrail.
 
 ## Operating Loop
 

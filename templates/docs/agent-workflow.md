@@ -7,9 +7,19 @@ read_when:
 
 # Agent Workflow
 
+## Prime Directive
+
+Move from request to verified change with the smallest useful context surface.
+
+Keep three things clear:
+
+- target: what outcome matters;
+- boundary: what must not drift;
+- proof: what would show the work is wrong.
+
 ## Task Brief
 
-For nontrivial work, turn the request into a compact brief before editing:
+For nontrivial work, start with:
 
 ```text
 Goal:
@@ -18,155 +28,85 @@ Constraints:
 Done when:
 ```
 
-Use the brief to keep Codex out of guesswork. If the goal, data exposure,
-architecture, or publish path is ambiguous, clarify or present options before
-coding.
+If architecture, data exposure, UX, or publish behavior is unclear, pause for
+alignment before coding.
 
-## Alignment Pass
+## Alignment
 
-For product-shaped, risky, or architecture-changing work, keep the main Codex
-thread responsible for reading the relevant docs, ADRs, and code before
-implementation. Use helpers only for noisy search, long logs, or independent
-review until the decision is clear.
+For product-shaped, risky, or architecture-changing work, the main thread reads
+the relevant code, docs, ADRs, and tests before implementation. Use helpers only
+for noisy search, long logs, or independent review until the decision is clear.
 
-Report back with the smallest useful set of choices:
+Return:
 
 - 2-3 viable approaches when the design is not obvious;
-- the recommended approach and why it fits the repo;
-- up to 5 questions whose answers would materially change architecture, data
-  exposure, UX, or publish behavior;
+- one recommendation and why it fits the repo;
+- up to 5 questions that would change the design, risk, or proof;
 - the proof that should fail if the implementation is wrong.
 
-After alignment, turn any durable architecture decision into a compact ADR in
-docs/adr/, especially when future sessions must preserve an invariant or use
-specific service boundaries.
+Write an ADR only when the decision should constrain future work.
 
-## Execution Packet
+## Artifacts
 
-For long-running, multi-step, or /goal work, create a compact execution packet
-before coding. Keep it in the thread when the work is short-lived, or use
-docs/execution-packet.md when the repo needs a reusable shape.
+| Artifact | Use When | Keep It |
+| --- | --- | --- |
+| Thread | One-off task context. | In the conversation. |
+| Execution packet | Long, multi-step, or /goal work. | Current, compact, discardable. |
+| ADR | Durable architecture/product invariant. | Short, numbered, referenced. |
+| Queue | Paused or handed-off work. | Small baton, not backlog. |
+| Knowledge | Stable facts and preferences. | Dated when likely to expire. |
+| Tools | Exact commands, auth names, ports, limits. | Verifiable and secret-free. |
 
-Include only what future context needs:
-
-- goal, non-goals, and assumptions;
-- chosen approach plus linked ADRs or decisions;
-- files or areas expected to change;
-- staged plan with status;
-- proof ladder, including dogfood path when user-facing behavior changes;
-- risks, rollback notes, and next decision.
-
-Update the packet when the plan materially changes. Do not let it become a
-second issue tracker or a design doc.
-
-## Mode Choice
-
-- Discuss: use when the request is fuzzy, product-shaped, risky, or strategic.
-- Plan: use when the change spans files, touches architecture, or has several
-  valid approaches.
-- Code: use when success criteria and proof are clear.
-- Review: use a fresh pass for important diffs, security-sensitive changes, and
-  contributor PRs.
-- Automate: use only after the workflow has worked manually and has reviewable
-  output.
+Execution packets carry plan, scope, proof ladder, dogfood path, risks, and
+handoff. ADRs carry decisions that should survive the branch.
 
 ## Loop
 
 1. Read AGENTS.md, then this file.
-2. Check docs/queue.md for current work.
-3. Check docs/knowledge.md for durable facts.
-4. Check docs/adr/ when architecture, invariants, or service boundaries matter.
-5. Check or create an execution packet for long, multi-step, or /goal work.
-6. Check docs/project-routing.md before cross-repo, GitHub, release, or publish
-   work.
-7. Check docs/tools.md before using repo-specific or user-local tools.
-8. Define success criteria before editing.
-9. Make the smallest coherent change.
-10. Run the narrowest useful proof.
-11. Run the adversarial done gate for nontrivial or /goal work.
-12. Record status, changed files, verification, and next action.
-13. Commit and push finished repo-visible work unless the user asked for
+2. Check queue, knowledge, tools, routing, and ADRs only when relevant.
+3. Define success criteria and the narrowest proof.
+4. Make the smallest coherent change.
+5. Run the proof ladder as high as the risk requires.
+6. Inspect the diff.
+7. Use the adversarial done gate for nontrivial, long, or /goal work.
+8. Record status and next action.
+9. Commit and push verified repo-visible work unless the user asked for
    local-only work.
 
-## Context
-
-- Current task state belongs in the active thread, shared context, or queue.
-- Durable facts belong in docs/knowledge.md.
-- Durable architecture decisions and invariants belong in docs/adr/.
-- Long-run execution shape belongs in the active thread or an execution packet.
-- Project, GitHub, release, and related-repo routing belong in
-  docs/project-routing.md.
-- Tool commands, auth source names, permissions, and known limits belong in
-  docs/tools.md.
-- Stable behavior belongs in AGENTS.md.
-- Around 80% context used, compact or hand off after recording status.
-
-## Start Packet
-
-Before editing, know:
-
-- request and success criteria;
-- branch, dirty state, and publish mode;
-- relevant project routing and tool constraints;
-- narrowest useful proof.
-
-If one of these changes while working, adjust the plan before touching more
-files.
-
-## Parallel Work
-
-- Split only when tasks have clear file ownership or read-only scope.
-- Use one Codex thread per task, feature slice, or proof.
-- Do not let two sessions edit the same file unless one session sequences the work.
-- Keep architecture-forming reads and decisions in the main thread until the
-  approach is settled.
-- Finished sessions report changed files, verification, residual risk, and ship status.
-- Use separate threads or subagents for noisy exploration, logs, broad search,
-  long tests, and independent review so the main thread stays focused.
-- Use worktrees or another isolated workspace for parallel write-heavy work.
-
-## Review Loop
-
-- Inspect the diff before calling work done.
-- Run the narrowest proof that can fail for the change.
-- For user-facing behavior, dogfood the changed path through the closest real
-  runtime, browser, UI, or CLI loop when feasible.
-- For UI work, capture or inspect the actual screen when possible.
-- For bugs, prefer a reproducer or regression test before the fix.
-- For high-risk changes, use a fresh review context so the reviewer is not
-  anchored to the implementation path.
-
-Proof ladder:
+## Proof Ladder
 
 1. Static checks, types, lint, or formatting.
 2. Focused unit or regression tests.
 3. Integration, build, migration, or API checks.
-4. Runtime smoke test through the changed route, CLI, job, or service.
-5. Browser, screenshot, computer-use, or end-to-end dogfood when the user
+4. Runtime smoke through the changed route, CLI, job, or service.
+5. Browser, screenshot, computer-use, or end-to-end dogfood when user
    experience is the claim.
 
-Choose the highest rung needed for the risk. Record what actually ran, what
-passed, and what was skipped.
+Record what ran, what passed, and what was skipped.
+
+## Parallel Work
+
+- Keep architecture-forming reads and decisions in the main thread until the
+  approach is settled.
+- Split only when tasks have clear ownership or read-only scope.
+- Use separate threads or subagents for noisy exploration, logs, broad search,
+  long tests, and independent review.
+- Use worktrees or another isolated workspace for parallel write-heavy work.
+- Finished workers report changed files, verification, residual risk, and ship
+  status.
 
 ## Adversarial Done Gate
 
-Use this gate for /goal runs, long-running plans, multi-step edits,
-security-sensitive changes, or any task where "done" depends on more than one
-obvious check. For tiny, obvious edits, a direct self-review can satisfy the
-gate.
+Use this for /goal runs, long plans, multi-step edits, security-sensitive
+changes, or any task where "done" depends on more than one obvious check.
 
-Before marking a task or plan item done:
+Before calling the work done:
 
-1. Restate the success criteria and evidence gathered.
-2. Ask a fresh reviewer, preferably a subagent or separate thread, to attack the
-   completion claim using only the task brief, relevant diff or artifacts, and
-   verification output.
-3. Have the reviewer return pass, gap, or blocker, with the smallest evidence
-   needed.
-4. If a material gap appears, do not mark the task done. Fix it, reroute to a
-   different tool or check when the path is wrong, or record the blocker and
-   next decision.
-5. When the gate passes, include the review result in the finish packet.
+1. Restate success criteria and evidence.
+2. Ask a fresh reviewer, subagent, or separate thread to attack the done claim.
+3. Have the reviewer return pass, gap, or blocker.
+4. Fix material gaps or record the blocker.
+5. Include the review result in the finish packet.
 
 Prompt shape:
 
@@ -180,20 +120,15 @@ Look for: missed requirements, unverified assumptions, regressions, overbuilt ch
 Return: pass, gap, or blocker; include file/line or command evidence when possible.
 ```
 
-## Publish Path
+## Publish
 
-- Follow the `AGENTS.md` publish path.
-- Confirm branch and origin before publishing.
-- Confirm the active GitHub repo/account before commenting, opening PRs, pushing,
-  or releasing.
-- Include changed files, verification, residual risk, and ship status in the
-  handoff.
+- Follow the AGENTS.md publish path.
+- Preserve user and other-agent changes.
+- Commit and push only verified repo-visible work.
+- Keep private, scratch, partial, failing, and unverified work out of commits.
+- Include changed files, proof, residual risk, and ship status in the handoff.
 
 ## Finish Packet
 
-Report:
-
-- changed files;
-- verification run and result;
-- residual risk or unverified area;
-- commit, push, PR, or local-only state.
+Report changed files, proof, residual risk, and commit/push/PR or local-only
+state.

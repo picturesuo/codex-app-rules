@@ -7,154 +7,151 @@ read_when:
 
 # Startup Agent Workflow
 
-## Goal
+## Principle
 
-Move fast enough to learn from customers while preserving the few decisions that
-would be expensive to rediscover or unwind.
+Ship fast loops, preserve durable decisions, and measure learning.
 
-Use three kinds of artifacts:
+Peter-style: talk directly, keep blast radius small, dogfood the UI.
+Karpathy-style: write the agent program, constrain the editable surface, run a
+fixed-budget loop, keep wins, discard losses.
 
-- Execution packet: the temporary source of truth for one substantial task.
-- ADR: a durable decision record for architecture, product invariants, or
-  service boundaries future sessions must preserve.
-- Proof: the smallest real feedback loop that can disprove the work.
+For a startup, combine them:
 
-## How The Pieces Fit
-
-- Conversation is for alignment: goal, options, tradeoffs, and questions.
-- Execution packets are for work in motion: plan, scope, proof, risks, and
-  handoff.
-- ADRs are for decisions that should outlive the feature branch.
-- Queue is for paused or resumed work.
-- Knowledge is for stable facts and preferences that are not decisions.
-- Tools docs are for exact commands, ports, auth source names, and limits.
+- conversation aligns taste and product judgment;
+- execution packets drive one substantial task;
+- ADRs preserve decisions future agents must not casually undo;
+- proof loops decide whether work survives.
 
 ## Startup Loop
 
-1. Frame the bet.
-   - Customer:
-   - Pain:
-   - Business outcome:
-   - Product promise:
-   - Fastest proof:
+1. Frame the bet:
+
+```text
+Customer:
+Pain:
+Business outcome:
+Product promise:
+Fastest proof:
+```
 
 2. Align before coding.
-   Ask Codex to read relevant code, docs, ADRs, metrics, and customer context.
-   Have it return 2-3 approaches, one recommendation, and up to 5 questions
-   that would change architecture, UX, data exposure, or go-to-market risk.
+   Ask Codex to read the relevant code, docs, ADRs, metrics, and customer
+   context. It should return 2-3 approaches, one recommendation, and up to 5
+   questions that would change architecture, UX, data exposure, business risk,
+   or proof.
 
-3. Decide what to preserve.
-   Create or update an ADR only when the decision should constrain future work.
-   Do not write ADRs for routine implementation choices.
+3. Preserve only real decisions.
+   Create an ADR when the answer should constrain future work. Skip ADRs for
+   routine implementation details.
 
-4. Create the execution packet.
-   Use it for long, multi-step, or /goal work. Keep the packet compact enough
-   to reread before every major edit.
+4. Program the run.
+   For long work, create an execution packet. For repeatable measurable loops,
+   make it Karpathy-simple: editable surface, read-only surface, fixed budget,
+   metric, log, keep/discard rule.
 
 5. Build the smallest complete slice.
    Prefer one customer-observable path over broad infrastructure. Avoid
-   speculative settings, abstractions, admin panels, dashboards, or future
-   integrations unless they are required for the current proof.
+   speculative settings, abstractions, dashboards, and future integrations.
 
-6. Dogfood the changed path.
-   Use the closest real loop: unit test, integration test, local runtime, CLI,
-   browser, screenshot, computer use, or end-to-end flow. For product UI, proof
-   should include what Codex actually saw or operated.
+6. Dogfood.
+   Use the closest real feedback loop: test, build, runtime smoke, browser,
+   screenshot, computer use, or end-to-end path.
 
 7. Review like an owner.
-   Inspect the diff, run the proof ladder, and use a fresh review pass for
-   security, billing, auth, data loss, payments, customer messaging, or
-   migration risk.
+   Look for missed customer promise, security/data exposure, billing/auth gaps,
+   regressions, missing proof, and overbuilt scope.
 
 8. Ship or stop.
-   Commit and push verified repo-visible work. If the work does not improve the
-   target, shrink it, revert only your own failed path, or record the blocker.
+   Commit and push verified work. If the work does not improve the target,
+   shrink it, discard your own failed path, or record the blocker.
 
 9. Feed the loop.
-   If a mistake repeats, add the smallest durable guardrail: docs, ADR, tool
-   command, test, script, skill, or automation.
+   When a mistake repeats, add the smallest durable guardrail: test, command,
+   doc, ADR, script, skill, or automation.
 
-## When To Use ADRs
+## ADRs
 
-Use an ADR when a future agent should not casually change the answer.
+An ADR is a small decision receipt. It exists so future agents preserve the
+reasoning, not just the code shape.
 
-Good ADR candidates:
+Write one for:
 
 - billing ownership and enforcement;
-- auth, tenant, permission, or data boundary;
-- where customer-visible state is sourced from;
+- auth, tenant, permission, or data boundaries;
+- customer-visible source of truth;
 - event, job, or workflow ownership;
 - pricing, plan, trial, or entitlement invariants;
-- migration strategy for durable data;
-- API/provider choice when switching is expensive;
-- product invariant that shapes code, such as "users never talk to agents."
+- durable data migration strategy;
+- expensive provider/API choices;
+- product invariants such as "users never talk directly to agents."
 
-Skip ADRs for:
+Skip one for naming, routine refactors, one-off copy, obvious local code shape,
+or anything already enforced by tests.
 
-- local refactors;
-- naming;
-- one-off UI copy;
-- routine library usage;
-- implementation details already obvious from nearby code.
-
-ADR prompt:
+Prompt:
 
 ```text
 Turn the decision we just aligned on into a compact ADR.
-Include: decision, context, details, invariants, consequences, references, and
+Include decision, context, details, invariants, consequences, references, and
 the proof that should fail if this decision is broken.
 Keep it short enough that a future agent will actually read it.
 ```
 
-## Default Prompts
+## Copy-Paste Prompts
 
-Research and alignment:
+Alignment:
 
 ```text
 We need to build [feature].
-Read the relevant code, docs, ADRs, and tests. Do not edit yet.
-Return 2-3 viable approaches, your recommended approach, the simplest complete
-slice, and up to 5 questions whose answers would materially change architecture,
-UX, data exposure, business risk, or proof.
+Read the relevant code, docs, ADRs, tests, and customer context. Do not edit yet.
+Return 2-3 viable approaches, your recommendation, the smallest complete slice,
+and up to 5 questions that would materially change architecture, UX, data
+exposure, business risk, or proof.
 ```
 
 Execution:
 
 ```text
 Create an execution packet for the chosen approach and execute it to completion.
-Keep the packet updated when the plan materially changes. Dogfood the changed
-path through the closest real runtime or UI loop, run the proof ladder, inspect
-the diff, and use the adversarial done gate before shipping.
+Keep the packet updated only when the plan materially changes. Dogfood the
+changed path, run the proof ladder, inspect the diff, and use the adversarial
+done gate before shipping.
+```
+
+Measurable loop:
+
+```text
+Set up a Karpathy-style loop for [target].
+Define editable files, read-only files, fixed budget, metric, log format, and
+keep/discard rule. Run [N] iterations, keep only measured wins, and summarize
+the result table.
 ```
 
 Fresh review:
 
 ```text
 Review this work like a startup owner.
-Look for missed customer promise, security/data exposure, billing/auth gaps,
-behavior regressions, missing proof, overbuilt scope, and anything that slows
-learning without reducing real risk.
-Return pass, gap, or blocker with file/line or command evidence.
+Return pass, gap, or blocker. Focus on customer promise, data/security, billing
+or auth, regressions, missing proof, and overbuilt scope.
 ```
 
 ## Parallel Work
 
-Keep product and architecture alignment in the main thread. Use subagents or
-separate threads for bounded work that can return summarized evidence:
+Keep product and architecture alignment in the main thread. Split only bounded
+work that can return evidence:
 
 - code archaeology;
-- log or test output analysis;
-- competitor or API research;
+- log or test analysis;
+- API or competitor research;
 - fresh review;
-- independent implementation only when file ownership is clear.
+- implementation with clear file ownership.
 
-Use an isolated worktree for parallel write-heavy work. Do not let two live
-threads edit the same files without a sequencer.
+Use an isolated worktree for parallel write-heavy work.
 
-## Weekly Founder Rhythm
+## Weekly Rhythm
 
-- Monday: pick one customer-facing bet and one risk-reduction task.
-- Daily: run one execution packet or one tight shipping loop.
-- Before ship: dogfood and adversarial review.
-- After ship: capture only repeated friction or durable decisions.
-- Friday: prune docs and queue; package only workflows that repeated twice.
+- Pick one customer-facing bet and one risk-reduction task.
+- Run one execution packet or tight shipping loop each day.
+- Dogfood and review before ship.
+- Capture only repeated friction or durable decisions.
+- Prune queue and docs weekly.
