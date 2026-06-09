@@ -9,6 +9,7 @@ This repo is worked by Codex app sessions.
 - README.md when present.
 - docs/agent-workflow.md
 - docs/execution-packet.md for long, multi-step, or /goal work.
+- docs/startup-agent-workflow.md for startup, product, or growth work.
 - docs/project-routing.md
 - docs/tools.md
 - docs/workflow-packaging-audit.md

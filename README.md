@@ -17,6 +17,7 @@ The package gives every checkout the same durable surface:
 | `AGENTS.md` | Hard rules, coding posture, and publish policy. |
 | `docs/agent-workflow.md` | The enter, edit, verify, and ship loop. |
 | `docs/execution-packet.md` | Lightweight packet for long, multi-step, or `/goal` work. |
+| `docs/startup-agent-workflow.md` | Founder workflow for product bets, shipping loops, and durable decisions. |
 | `docs/project-routing.md` | Repo identity, GitHub, publish, and related-project routing. |
 | `docs/tools.md` | Local tool catalog, auth source names, permissions, and known limits. |
 | `docs/workflow-packaging-audit.md` | When repeated work deserves a skill, subagent, automation, doc, or script. |
@@ -73,6 +74,9 @@ agent may quote, commit, or publish.
   references, not scattered chat memory.
 - For long runs, create an execution packet before coding so compaction,
   review, and resumed work share the same target.
+- For startup work, separate fast shipping loops from durable product and
+  architecture decisions; optimize for validated learning without losing
+  technical coherence.
 - Keep always-on instructions short; move occasional workflows into skills.
 - Use separate threads or subagents for noisy exploration, logs, long tests, and
   independent review. Parallel work should earn its coordination cost and stay

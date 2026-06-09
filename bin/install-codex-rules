@@ -50,6 +50,7 @@ copy_if_missing() {
 copy_if_missing "$ROOT/templates/AGENTS.md" "$TARGET/AGENTS.md"
 copy_if_missing "$ROOT/templates/docs/agent-workflow.md" "$TARGET/docs/agent-workflow.md"
 copy_if_missing "$ROOT/templates/docs/execution-packet.md" "$TARGET/docs/execution-packet.md"
+copy_if_missing "$ROOT/templates/docs/startup-agent-workflow.md" "$TARGET/docs/startup-agent-workflow.md"
 copy_if_missing "$ROOT/templates/docs/project-routing.md" "$TARGET/docs/project-routing.md"
 copy_if_missing "$ROOT/templates/docs/tools.md" "$TARGET/docs/tools.md"
 copy_if_missing "$ROOT/templates/docs/workflow-packaging-audit.md" "$TARGET/docs/workflow-packaging-audit.md"

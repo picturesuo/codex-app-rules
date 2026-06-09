@@ -32,6 +32,7 @@ The common files should do only durable work:
 | `AGENTS.md` | Behavior contract and hard rules. | A rule should apply across many sessions. |
 | `docs/agent-workflow.md` | Read, edit, verify, and publish loop. | The working loop changes. |
 | `docs/execution-packet.md` | Lightweight packet for long, multi-step, or `/goal` work. | A long-run task needs a reusable packet shape. |
+| `docs/startup-agent-workflow.md` | Founder workflow for product bets, shipping loops, and durable decisions. | The repo is used to build a startup or product. |
 | `docs/project-routing.md` | Repo, GitHub, release, and related-project routing. | Codex has to ask the same routing question twice. |
 | `docs/tools.md` | Tool commands, auth source names, limits, and fallbacks. | A local tool has a stable command or gotcha. |
 | `docs/workflow-packaging-audit.md` | Decision test for skills, subagents, automations, docs, and scripts. | Repeated work needs packaging discipline. |
