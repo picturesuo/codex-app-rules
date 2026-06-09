@@ -82,6 +82,8 @@ agent may quote, commit, or publish.
   handoff when feasible.
 - Prefer repo scripts and CLIs before heavier integrations; add MCP or browser
   tools when they close a real feedback loop.
+- Run the `docs/workflow-packaging-audit.md` routine-design loop before turning
+  repeated work into a skill, subagent, automation, doc, or script.
 - Use automations only after the manual workflow is stable and the result is
   easy to review.
 - Feed repeated mistakes back into the smallest durable file that prevents them.

@@ -82,6 +82,8 @@ agent workflows:
   runtime smoke, then browser/computer-use or end-to-end dogfood;
 - use tools deliberately: repo scripts first, CLIs before broad integrations,
   MCP/browser/computer-use only when they close a real feedback loop;
+- run the `docs/workflow-packaging-audit.md` routine-design loop before turning
+  repeated work into a skill, subagent, automation, doc, or script;
 - write retrospectives back into docs, skills, scripts, or automations only
   after repeated friction.
 

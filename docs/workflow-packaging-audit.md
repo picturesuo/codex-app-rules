@@ -12,6 +12,23 @@ read_when:
 Find repeated manual work worth packaging, then create only the smallest
 high-confidence missing asset. "Skip" is a valid outcome.
 
+## Routine Design Loop
+
+Use this loop when a task exposes repeated friction or the user asks for a
+loop, routine, skill, subagent, or automation. This loop creates other loops:
+
+1. Notice the trigger, repeated work, inputs, output, owner, and stopping point.
+2. Test whether the work is stable, recurring, useful, and not already covered.
+3. Choose the smallest useful form, preferring extension over duplication.
+4. Dry-run the routine manually with real evidence and a proof that can fail.
+5. Package only the durable part, including privacy limits and verification.
+6. Review whether it reduced steps, mistakes, or context load; otherwise skip
+   or shrink it.
+
+Do not package a loop just because it sounds clever. Package it when the manual
+version has enough evidence and the resulting asset is easier to review than
+the repeated prompt.
+
 ## Evidence Order
 
 1. Recent Codex sessions, task summaries, shared context, and repo docs.
