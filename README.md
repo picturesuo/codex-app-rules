@@ -48,13 +48,4 @@ Project-specific accounts, remotes, release rules, tool paths, ports, and
 related repos belong in the installed target repo docs, never in this shared
 package.
 
-## Workflow Biases
-
-- Prompt shape: goal, context, constraints, done.
-- Alignment: options, recommendation, hard questions, proof.
-- Artifacts: execution packets for active long work, ADRs for durable decisions.
-- Feedback: tests, builds, runtime checks, browser/computer-use dogfood.
-- Context: main thread owns decisions; helpers handle noise and review.
-- Packaging: repeated friction becomes the smallest durable guardrail.
-
 See `docs/source-inspirations.md` for sources and adaptations.

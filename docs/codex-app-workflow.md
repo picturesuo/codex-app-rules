@@ -41,35 +41,6 @@ release rules belong in the target repo after install.
 - If a detail is true for one repo, install the templates there and write it
   there.
 
-## Workflow Shape
-
-The templates encode the recurring agent-work patterns:
-
-- prompt shape: goal, context, constraints, done;
-- alignment: options, recommendation, hard questions, proof;
-- artifacts: execution packet for active work, ADR for durable decisions;
-- measurement: proof ladder, dogfood, keep/discard loops;
-- context control: main thread for decisions, helpers for noise and review;
-- packaging: repeated friction becomes the smallest useful guardrail.
-
-## Operating Loop
-
-1. Open Codex on the target checkout.
-2. Read `AGENTS.md` and `docs/agent-workflow.md`.
-3. Check routing, tools, queue, knowledge, and ADRs only when relevant.
-4. Use an execution packet for long, multi-step, or `/goal` work.
-5. Define success criteria and proof.
-6. Make the smallest coherent change.
-7. Verify, review, commit, and push unless local-only.
-
-## Parallel Work
-
-- One thread per coherent unit of work.
-- Main thread owns requirements, decisions, and proof.
-- Subagents handle bounded research, logs, tests, archaeology, or review.
-- Parallel write-heavy work needs isolated worktrees or workspaces.
-- Handoffs report files, verification, risk, and ship status.
-
 ## Design Standard
 
 Every common rule must prevent a likely mistake across many repos. One-project

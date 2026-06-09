@@ -75,16 +75,7 @@ Write one for:
 Skip one for naming, routine refactors, one-off copy, obvious local code shape,
 or anything already enforced by tests.
 
-ADR prompt:
-
-```text
-Turn the decision we just aligned on into a compact ADR.
-Include decision, context, details, invariants, consequences, references, and
-the proof that should fail if this decision is broken.
-Keep it short enough that a future agent will actually read it.
-```
-
-## Copy-Paste Prompts
+## Prompt Shapes
 
 Alignment:
 
@@ -96,16 +87,14 @@ and up to 5 questions that would materially change architecture, UX, data
 exposure, business risk, or proof.
 ```
 
-Execution:
+Run:
 
 ```text
-Create an execution packet for the chosen approach and execute it to completion.
-Keep the packet updated only when the plan materially changes. Dogfood the
-changed path, run the proof ladder, inspect the diff, and use the adversarial
-done gate before shipping.
+Create an execution packet for the chosen approach. Execute, dogfood, run proof,
+inspect the diff, and use the done gate before shipping.
 ```
 
-Measurable loop:
+Measure:
 
 ```text
 Set up a Karpathy-style loop for [target].
@@ -114,7 +103,7 @@ keep/discard rule. Run [N] iterations, keep only measured wins, and summarize
 the result table.
 ```
 
-Fresh review:
+Review:
 
 ```text
 Review this work like a startup owner.
@@ -134,11 +123,3 @@ work that can return evidence:
 - implementation with clear file ownership.
 
 Use an isolated worktree for parallel write-heavy work.
-
-## Weekly Rhythm
-
-- Pick one customer-facing bet and one risk-reduction task.
-- Run one execution packet or tight shipping loop daily.
-- Dogfood and review before ship.
-- Capture only repeated friction or durable decisions.
-- Prune queue and docs weekly.

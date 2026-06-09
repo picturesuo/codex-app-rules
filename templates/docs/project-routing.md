@@ -38,11 +38,9 @@ gh auth status
 
 ## Surfaces
 
-- Local app thread: real checkout, local tools, browser/screenshots, active user
-  steering.
-- Worktree/cloud/background task: independent work with clear setup and branch.
+- Local thread: real checkout, local tools, browser/screenshots, user steering.
+- Worktree or cloud thread: independent work with clear setup and branch.
 - Automation: stable recurring checks, summaries, triage, or reports.
-- Mobile/quick capture: small idea to review later on the main machine.
 
 When moving work, record branch, task URL or thread name, proof gathered, and
 next decision.

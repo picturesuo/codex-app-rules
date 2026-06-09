@@ -14,8 +14,8 @@ Publish a compact, reusable Codex app rules pack.
 
 ## Rules
 
-- Templates must be public-safe: no secrets, private data, account paths,
-  tokens, credentials, or PR-body surprises.
+- Templates must be public-safe: no secrets, private data, tokens, credentials,
+  or private paths.
 - Put common reusable rules in `templates/`; put rationale in `docs/`.
 - Keep each Markdown file to one job; link instead of duplicating.
 - Do not overwrite a target repo's existing instructions.

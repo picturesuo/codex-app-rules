@@ -23,12 +23,9 @@ This repo is a Codex app workspace.
 - Use the simplest complete change; add no speculative features or refactors.
 - Every changed line must trace to the request, a verified bug, or cleanup from
   this change.
-- Keep current task state in the thread, shared context, or docs/queue.md.
-- Keep stable facts in docs/knowledge.md.
-- Keep durable decisions and invariants in docs/adr/.
-- Keep repo identity and tool catalogs in docs/project-routing.md or
-  docs/tools.md.
-- Keep long-run plan, proof, dogfood path, risks, and handoff in the thread or
+- Store context in the right file: task state in docs/queue.md, facts in
+  docs/knowledge.md, decisions in docs/adr/, routing/tools in
+  docs/project-routing.md or docs/tools.md, and long-run plans in the thread or
   docs/execution-packet.md.
 - Keep each Markdown file to one job; link instead of duplicating.
 - Do not store secrets in docs, config, commits, issues, PRs, or logs.

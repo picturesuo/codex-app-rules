@@ -7,8 +7,7 @@ read_when:
 
 # Execution Packet
 
-Use one packet for one substantial task. Keep it short enough to reread before
-major edits.
+One packet per substantial task; short enough to reread before major edits.
 
 ## Goal
 

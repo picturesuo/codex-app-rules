@@ -7,8 +7,6 @@ read_when:
 
 # Source Inspirations
 
-This file explains why a rule exists. Keep sources here, not in every template.
-
 ## Patterns
 
 | Source | Adapted Rules |
@@ -24,8 +22,3 @@ This file explains why a rule exists. Keep sources here, not in every template.
 | Agent Markdown and ADR references: https://agents.md and https://docs.arc42.org/tips/9-5/ | Treat Markdown as an agent-readable interface. Keep behavior, tools, routing, queue, knowledge, and ADRs in separate files with clear ownership. |
 | Anthropic agent engineering: https://www.anthropic.com/engineering/building-effective-agents and https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents | Verify with tests or runtime evidence. Explore, plan, then implement for ambiguous work. Manage context aggressively. |
 | YC agent startups and Simon Willison on parallel coding agents: https://www.ycombinator.com/companies/conductor and https://simonwillison.net/2025/Oct/5/parallel-coding-agents/ | Parallel agents need isolated workspaces, clear ownership, visible status, proof, and human review. Browser/runtime context matters for frontend agents. |
-
-## Design Test
-
-Keep a rule only when it prevents a likely repeat mistake across repos. If it
-belongs to one project, install the pack there and write the detail there.

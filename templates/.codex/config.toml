@@ -4,5 +4,4 @@ model = "gpt-5.5"
 model_reasoning_effort = "medium"
 plan_mode_reasoning_effort = "high"
 
-# Put personal sandbox, approval, MCP, and profile settings in ~/.codex/config.toml
-# unless this repo needs its own boundary.
+# Personal sandbox, approval, MCP, and profiles belong in ~/.codex/config.toml.
